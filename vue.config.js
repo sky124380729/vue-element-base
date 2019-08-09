@@ -1,6 +1,6 @@
-const path = require("path");
+const path = require('path')
 function resolve(dir) {
-    return path.join(__dirname, dir);
+    return path.join(__dirname, dir)
 }
 module.exports = {
     css: {
@@ -11,9 +11,8 @@ module.exports = {
             }
         }
     },
+    lintOnSave: true, // 为error会导致编译失败
     chainWebpack: config => {
-        config.resolve.alias
-            .set("imgs", resolve("src/assets/imgs"))
-            .set("static", resolve("src/static"));
+        config.resolve.alias.set('imgs', resolve('src/assets/imgs')).set('static', resolve('src/static'))
     }
-};
+}
