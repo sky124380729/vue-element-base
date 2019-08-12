@@ -1,31 +1,108 @@
 <template>
-    <div class="menu">
-        <h1 class="logo">嘉展科技有限公司</h1>
-        <el-menu default-active="2" background-color="#545c64" text-color="#fff" active-text-color="#ffd04b" @open="handleOpen" @close="handleClose"> </el-menu>
-    </div>
+    <el-scrollbar class="menu" wrapClass="scrollbar-wrapper">
+        <!-- default-active="$route.path" 路径等于当前路由，可以让路由在跳转的时候对应高亮 unique-opened 是否只保持一个菜单展开 -->
+        <el-menu :collapse="collapse" background-color="#363C42" text-color="#fff" active-text-color="#ffd04b" router :default-active="activePath" unique-opened>
+            <sidebar-item v-for="item in menuList" :key="item.name" :data="item"></sidebar-item>
+        </el-menu>
+    </el-scrollbar>
 </template>
 
 <script>
+import Test from './Test'
+import SidebarItem from './SidebarItem'
 export default {
+    computed: {
+        menuList() {
+            return [
+                {
+                    path: '/system',
+                    name: 'system',
+                    component: Test,
+                    meta: { title: '基础资料管理', menu: true },
+                    children: [
+                        {
+                            path: 'resource',
+                            component: () => import('./Test'),
+                            name: 'system-resource',
+                            meta: { title: '系统资源管理', menu: true },
+                            children: [
+                                {
+                                    path: 'resource',
+                                    component: () => import('./Test'),
+                                    name: 'system-resource',
+                                    meta: { title: '系统资源管理子菜单', menu: true }
+                                }
+                            ]
+                        },
+                        {
+                            path: 'relationship',
+                            component: () => import('./Test'),
+                            name: 'system-relationship',
+                            meta: { title: '人员关系管理', menu: true }
+                        },
+                        {
+                            path: 'role',
+                            component: () => import('./Test'),
+                            name: 'system-role',
+                            meta: { title: '系统角色管理', menu: true }
+                        },
+                        {
+                            path: 'organization',
+                            component: () => import('./Test'),
+                            name: 'system-organization',
+                            meta: { title: '系统组织管理', menu: true }
+                        },
+                        {
+                            path: 'user',
+                            component: () => import('./Test'),
+                            name: 'system-user',
+                            meta: { title: '系统人员管理', menu: true }
+                        },
+                        {
+                            path: 'schedule',
+                            component: () => import('./Test'),
+                            name: 'system-schedule',
+                            meta: { title: '人员班次管理', menu: true }
+                        },
+                        {
+                            path: 'lookup',
+                            component: () => import('./Test'),
+                            name: 'system-lookup',
+                            meta: { title: '数据字典管理', menu: true }
+                        }
+                    ]
+                }
+            ]
+        },
+        collapse() {
+            return this.$store.state.collapse
+        },
+        activePath() {
+            // 如果是以/index结尾的，则去掉
+            const path = this.$route.path
+            return /\/index$/.test(path) ? path.substring(0, path.length - 6) : path
+        }
+    },
     methods: {
         handleOpen() {
             console.log(1)
         },
         handleClose() {}
+    },
+    components: {
+        SidebarItem
     }
 }
 </script>
 
-<style lang="scss" scoped>
-.menu {
-    .logo {
-        width: 100%;
-        height: 50px;
-        text-indent: -9999px;
-        background: url(~imgs/logo.png) no-repeat center;
-    }
-    .el-menu {
-        width: 100%;
+<style lang="scss">
+.el-menu {
+    border-right: none !important;
+    .icon {
+        width: 16px;
+        margin-right: 5px;
+        text-align: center;
+        font-size: 16px;
     }
 }
 </style>
