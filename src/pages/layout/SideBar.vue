@@ -206,7 +206,7 @@ export default {
     .logo {
         width: 90%;
         margin: 0 auto;
-        height: 56px;
+        height: $nav-height;
         object-fit: contain;
     }
     .el-menu {
