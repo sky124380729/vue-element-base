@@ -1,23 +1,24 @@
 <template>
     <div class="grid">
-        <div class="grid__logo">
-            <h1 class="logo">嘉展科技有限公司</h1>
+        <div class="grid__header">
+            <NavBar />
         </div>
         <div class="grid__menu">
-            <Menu />
+            <SideBar />
         </div>
-        <div class="grid__header"></div>
         <div class="grid__nav"></div>
         <div class="grid__content"></div>
     </div>
 </template>
 
 <script>
-import Menu from './Menu'
+import SideBar from './SideBar'
+import NavBar from './NavBar'
 export default {
     name: 'grid',
     components: {
-        Menu
+        SideBar,
+        NavBar
     }
 }
 </script>
@@ -31,17 +32,10 @@ export default {
     grid-template-rows: 56px 40px 1fr;
     background-color: $-color--bg;
     overflow-x: hidden;
-    &__logo {
-        background: #2b3035;
-        .logo {
-            height: 100%;
-            text-indent: -9999px;
-            background: url(~imgs/logo.png) no-repeat center;
-        }
-    }
     &__menu {
-        grid-row: 2 / -1;
+        grid-row: 1 / -1;
         background-color: $-color--bg;
+        transition: width 0.4s;
     }
     &__header {
         background-color: #fff;

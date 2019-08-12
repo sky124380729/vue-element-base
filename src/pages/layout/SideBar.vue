@@ -1,5 +1,6 @@
 <template>
     <el-scrollbar class="menu" wrapClass="menu-wrapper">
+        <h1 class="logo">嘉展科技有限公司</h1>
         <!-- default-active="$route.path" 路径等于当前路由，可以让路由在跳转的时候对应高亮 unique-opened 是否只保持一个菜单展开 -->
         <el-menu :collapse="collapse" background-color="#363C42" text-color="#fff" active-text-color="#ffd04b" router :default-active="activePath" unique-opened>
             <sidebar-item v-for="item in menuList" :key="item.name" :data="item"></sidebar-item>
@@ -11,6 +12,7 @@
 import Test from './Test'
 import SidebarItem from './SidebarItem'
 export default {
+    name: 'sidebar',
     computed: {
         menuList() {
             return [
@@ -200,6 +202,11 @@ export default {
 <style lang="scss">
 .menu {
     height: 100%;
+    .logo {
+        height: 56px;
+        text-indent: -9999px;
+        background: url(~imgs/logo.png) no-repeat center;
+    }
     .el-menu {
         border-right: none !important;
     }
