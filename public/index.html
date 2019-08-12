@@ -6,12 +6,115 @@
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <link rel="icon" href="<%= BASE_URL %>favicon.ico">
     <title>vue-element-base</title>
+    <style>
+      body {
+        background: #000000;
+        font-family: "Telex";
+      }
+      #app {
+        height: 100vh;
+      }
+      .loading {
+        color: #ffffff;
+        font-size: 20px;
+        height: 20px;
+        text-align: center;
+        position: relative;
+        top: 50%;
+        margin-top: -10px;
+        -webkit-transform-style: preserve-3d;
+        -moz-transform-style: preserve-3d;
+        -o-transform-style: preserve-3d;
+        -ms-transform-style: preserve-3d;
+        transform-style: preserve-3d;
+        -webkit-perspective: 500px;
+        -moz-perspective: 500px;
+        -o-perspective: 500px;
+        -ms-perspective: 500px;
+        perspective: 500px;
+        letter-spacing: 2px;
+        text-rendering: optimizelegibility;
+        -webkit-font-smoothing: antialiased;
+        text-shadow: 2px 2px 20px #ff0000;
+        margin-left: 20px;
+      }
+
+      .rotate {
+        display: inline;
+        position: absolute;
+        background-color: #ffffff;
+        color: #000000;
+        -webkit-border-radius: 2px;
+        -moz-border-radius: 2px;
+        border-radius: 2px;
+        -webkit-box-shadow: 0 0 60px 4px #000088;
+        -moz-box-shadow: 0 0 60px 4px #000088;
+        box-shadow: 0 0 60px 4px #000088;
+        -webkit-animation: animate-rotate-x 1s ease infinite;
+        -moz-animation: animate-rotate-x 1s ease infinite;
+        animation: animate-rotate-x 1s ease infinite;
+        margin-left: -20px;
+      }
+
+      @-webkit-keyframes animate-rotate-x {
+        0% {
+          -webkit-transform: rotateX(1deg);
+          -moz-transform: rotateX(1deg);
+          -o-transform: rotateX(1deg);
+          -ms-transform: rotateX(1deg);
+          transform: rotateX(1deg);
+        }
+        100% {
+          -webkit-transform: rotateX(360deg);
+          -moz-transform: rotateX(360deg);
+          -o-transform: rotateX(360deg);
+          -ms-transform: rotateX(360deg);
+          transform: rotateX(360deg);
+        }
+      }
+      @-moz-keyframes animate-rotate-x {
+        0% {
+          -webkit-transform: rotateX(1deg);
+          -moz-transform: rotateX(1deg);
+          -o-transform: rotateX(1deg);
+          -ms-transform: rotateX(1deg);
+          transform: rotateX(1deg);
+        }
+        100% {
+          -webkit-transform: rotateX(360deg);
+          -moz-transform: rotateX(360deg);
+          -o-transform: rotateX(360deg);
+          -ms-transform: rotateX(360deg);
+          transform: rotateX(360deg);
+        }
+      }
+      @keyframes animate-rotate-x {
+        0% {
+          -webkit-transform: rotateX(1deg);
+          -moz-transform: rotateX(1deg);
+          -o-transform: rotateX(1deg);
+          -ms-transform: rotateX(1deg);
+          transform: rotateX(1deg);
+        }
+        100% {
+          -webkit-transform: rotateX(360deg);
+          -moz-transform: rotateX(360deg);
+          -o-transform: rotateX(360deg);
+          -ms-transform: rotateX(360deg);
+          transform: rotateX(360deg);
+        }
+      }
+    </style>
   </head>
   <body>
     <noscript>
       <strong>We're sorry but vue-element-base doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
     </noscript>
-    <div id="app"></div>
+    <div id="app">
+      <div class='loading'>
+        <div class='rotate'>L</div>OADING...
+      </div>
+    </div>
     <!-- built files will be auto injected -->
   </body>
 </html>
