@@ -1,5 +1,5 @@
 <template>
-    <el-scrollbar class="menu" wrapClass="scrollbar-wrapper">
+    <el-scrollbar class="menu" wrapClass="menu-wrapper">
         <!-- default-active="$route.path" 路径等于当前路由，可以让路由在跳转的时候对应高亮 unique-opened 是否只保持一个菜单展开 -->
         <el-menu :collapse="collapse" background-color="#363C42" text-color="#fff" active-text-color="#ffd04b" router :default-active="activePath" unique-opened>
             <sidebar-item v-for="item in menuList" :key="item.name" :data="item"></sidebar-item>
@@ -69,6 +69,114 @@ export default {
                             component: () => import('./Test'),
                             name: 'system-lookup',
                             meta: { title: '数据字典管理', menu: true }
+                        },
+                        {
+                            path: 'relationship',
+                            component: () => import('./Test'),
+                            name: 'system-relationship1',
+                            meta: { title: '人员关系管理', menu: true }
+                        },
+                        {
+                            path: 'role',
+                            component: () => import('./Test'),
+                            name: 'system-role1',
+                            meta: { title: '系统角色管理', menu: true }
+                        },
+                        {
+                            path: 'organization',
+                            component: () => import('./Test'),
+                            name: 'system-organization1',
+                            meta: { title: '系统组织管理', menu: true }
+                        },
+                        {
+                            path: 'user',
+                            component: () => import('./Test'),
+                            name: 'system-user1',
+                            meta: { title: '系统人员管理', menu: true }
+                        },
+                        {
+                            path: 'schedule',
+                            component: () => import('./Test'),
+                            name: 'system-schedule1',
+                            meta: { title: '人员班次管理', menu: true }
+                        },
+                        {
+                            path: 'lookup',
+                            component: () => import('./Test'),
+                            name: 'system-lookup1',
+                            meta: { title: '数据字典管理', menu: true }
+                        },
+                        {
+                            path: 'relationship',
+                            component: () => import('./Test'),
+                            name: 'system-relationship2',
+                            meta: { title: '人员关系管理', menu: true }
+                        },
+                        {
+                            path: 'role',
+                            component: () => import('./Test'),
+                            name: 'system-role2',
+                            meta: { title: '系统角色管理', menu: true }
+                        },
+                        {
+                            path: 'organization',
+                            component: () => import('./Test'),
+                            name: 'system-organization2',
+                            meta: { title: '系统组织管理', menu: true }
+                        },
+                        {
+                            path: 'user',
+                            component: () => import('./Test'),
+                            name: 'system-user2',
+                            meta: { title: '系统人员管理', menu: true }
+                        },
+                        {
+                            path: 'schedule',
+                            component: () => import('./Test'),
+                            name: 'system-schedule2',
+                            meta: { title: '人员班次管理', menu: true }
+                        },
+                        {
+                            path: 'lookup',
+                            component: () => import('./Test'),
+                            name: 'system-lookup2',
+                            meta: { title: '数据字典管理', menu: true }
+                        },
+                        {
+                            path: 'relationship',
+                            component: () => import('./Test'),
+                            name: 'system-relationship3',
+                            meta: { title: '人员关系管理', menu: true }
+                        },
+                        {
+                            path: 'role',
+                            component: () => import('./Test'),
+                            name: 'system-role3',
+                            meta: { title: '系统角色管理', menu: true }
+                        },
+                        {
+                            path: 'organization',
+                            component: () => import('./Test'),
+                            name: 'system-organization3',
+                            meta: { title: '系统组织管理', menu: true }
+                        },
+                        {
+                            path: 'user',
+                            component: () => import('./Test'),
+                            name: 'system-use3r',
+                            meta: { title: '系统人员管理', menu: true }
+                        },
+                        {
+                            path: 'schedule',
+                            component: () => import('./Test'),
+                            name: 'system-schedule3',
+                            meta: { title: '人员班次管理', menu: true }
+                        },
+                        {
+                            path: 'lookup',
+                            component: () => import('./Test'),
+                            name: 'system-lookup3',
+                            meta: { title: '数据字典管理', menu: true }
                         }
                     ]
                 }
@@ -83,12 +191,6 @@ export default {
             return /\/index$/.test(path) ? path.substring(0, path.length - 6) : path
         }
     },
-    methods: {
-        handleOpen() {
-            console.log(1)
-        },
-        handleClose() {}
-    },
     components: {
         SidebarItem
     }
@@ -96,13 +198,10 @@ export default {
 </script>
 
 <style lang="scss">
-.el-menu {
-    border-right: none !important;
-    .icon {
-        width: 16px;
-        margin-right: 5px;
-        text-align: center;
-        font-size: 16px;
+.menu {
+    height: 100%;
+    .el-menu {
+        border-right: none !important;
     }
 }
 </style>
