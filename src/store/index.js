@@ -7,6 +7,10 @@ export default new Vuex.Store({
     state: {
         collapse: false
     },
-    mutations: {},
+    mutations: {
+        SET_COLLAPSE(state, flag) {
+            state.collapse = flag
+        }
+    },
     actions: {}
 })

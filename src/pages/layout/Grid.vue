@@ -1,5 +1,5 @@
 <template>
-    <div class="grid">
+    <div class="grid" :class="{ collapse }">
         <div class="grid__header">
             <NavBar />
         </div>
@@ -12,10 +12,14 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 import SideBar from './SideBar'
 import NavBar from './NavBar'
 export default {
     name: 'grid',
+    computed: {
+        ...mapState(['collapse'])
+    },
     components: {
         SideBar,
         NavBar
@@ -29,9 +33,15 @@ export default {
     width: 100vw;
     height: 100vh;
     grid-template-columns: 200px 1fr;
-    grid-template-rows: 56px 40px 1fr;
+    grid-template-rows: $nav-height 40px 1fr;
     background-color: $-color--bg;
     overflow-x: hidden;
+    &.collapse {
+        grid-template-columns: 80px 1fr;
+        .grid__menu {
+            text-align: center;
+        }
+    }
     &__menu {
         grid-row: 1 / -1;
         background-color: $-color--bg;
