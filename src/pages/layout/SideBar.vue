@@ -215,5 +215,8 @@ export default {
             width: inherit;
         }
     }
+    ::v-deep .el-scrollbar__wrap {
+        overflow-x: hidden;
+    }
 }
 </style>
