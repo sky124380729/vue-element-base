@@ -17,5 +17,23 @@ module.exports = {
             .set('pages', resolve('src/pages'))
             .set('static', resolve('src/static'))
             .set('imgs', resolve('src/assets/imgs'))
+    },
+    // 生产环境不生成.map文件
+    productionSourceMap: false,
+    devServer: {
+        hot: true,
+        open: true,
+        allowedHosts: ['*'], // 解决ie浏览器websocket跨域问题
+        inline: true,
+        stats: {
+            colors: true
+        },
+        proxy: {
+            '/api': {
+                changeOrigin: true,
+                // 目标服务器地址
+                target: 'http://cfm.cloudkeeper.cn'
+            }
+        }
     }
 }
