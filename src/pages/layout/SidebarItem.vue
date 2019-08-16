@@ -28,7 +28,8 @@ export default {
     },
     methods: {
         resolvePath(path) {
-            return (!this.path || this.path + '/') + path
+            const p = this.path === '' ? this.path : this.path + '/'
+            return p + path
         }
     }
 }
