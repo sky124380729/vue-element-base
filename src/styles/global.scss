@@ -26,6 +26,12 @@
     &__box {
         flex: 1;
     }
+    &__content {
+        box-sizing: border-box;
+        background-color: #fff;
+        padding: 20px;
+        height: calc(100vh - #{$height-nav} - #{$height-tag});
+    }
 }
 
 .layout.collapse {

@@ -16,6 +16,8 @@
 <script>
 import Layout from '@/pages/layout/Layout'
 import Test from './Test'
+import Test2 from './Test2'
+import Test3 from './Test3'
 import SidebarItem from './SidebarItem'
 export default {
     name: 'sidebar',
@@ -30,14 +32,14 @@ export default {
                     children: [
                         {
                             path: 'resource',
-                            component: Test,
+                            component: Test2,
                             name: 'system-resource',
                             meta: { title: '系统资源管理', icon: 'el-icon-s-tools', menu: true },
                             children: [
                                 {
-                                    path: 'resource',
-                                    component: Test,
-                                    name: 'system-resource',
+                                    path: 'xxx',
+                                    component: Test3,
+                                    name: 'system-resource-xxx',
                                     meta: { title: '系统资源管理子菜单', icon: 'el-icon-user', menu: true }
                                 }
                             ]
@@ -53,138 +55,6 @@ export default {
                             component: Test,
                             name: 'system-role',
                             meta: { title: '系统角色管理', menu: true }
-                        },
-                        {
-                            path: 'organization',
-                            component: Test,
-                            name: 'system-organization',
-                            meta: { title: '系统组织管理', menu: true }
-                        },
-                        {
-                            path: 'user',
-                            component: Test,
-                            name: 'system-user',
-                            meta: { title: '系统人员管理', menu: true }
-                        },
-                        {
-                            path: 'schedule',
-                            component: Test,
-                            name: 'system-schedule',
-                            meta: { title: '人员班次管理', menu: true }
-                        },
-                        {
-                            path: 'lookup',
-                            component: Test,
-                            name: 'system-lookup',
-                            meta: { title: '数据字典管理', menu: true }
-                        },
-                        {
-                            path: 'relationship',
-                            component: Test,
-                            name: 'system-relationship1',
-                            meta: { title: '人员关系管理', menu: true }
-                        },
-                        {
-                            path: 'role',
-                            component: Test,
-                            name: 'system-role1',
-                            meta: { title: '系统角色管理', menu: true }
-                        },
-                        {
-                            path: 'organization',
-                            component: Test,
-                            name: 'system-organization1',
-                            meta: { title: '系统组织管理', menu: true }
-                        },
-                        {
-                            path: 'user',
-                            component: Test,
-                            name: 'system-user1',
-                            meta: { title: '系统人员管理', menu: true }
-                        },
-                        {
-                            path: 'schedule',
-                            component: Test,
-                            name: 'system-schedule1',
-                            meta: { title: '人员班次管理', menu: true }
-                        },
-                        {
-                            path: 'lookup',
-                            component: Test,
-                            name: 'system-lookup1',
-                            meta: { title: '数据字典管理', menu: true }
-                        },
-                        {
-                            path: 'relationship',
-                            component: Test,
-                            name: 'system-relationship2',
-                            meta: { title: '人员关系管理', menu: true }
-                        },
-                        {
-                            path: 'role',
-                            component: Test,
-                            name: 'system-role2',
-                            meta: { title: '系统角色管理', menu: true }
-                        },
-                        {
-                            path: 'organization',
-                            component: Test,
-                            name: 'system-organization2',
-                            meta: { title: '系统组织管理', menu: true }
-                        },
-                        {
-                            path: 'user',
-                            component: Test,
-                            name: 'system-user2',
-                            meta: { title: '系统人员管理', menu: true }
-                        },
-                        {
-                            path: 'schedule',
-                            component: Test,
-                            name: 'system-schedule2',
-                            meta: { title: '人员班次管理', menu: true }
-                        },
-                        {
-                            path: 'lookup',
-                            component: Test,
-                            name: 'system-lookup2',
-                            meta: { title: '数据字典管理', menu: true }
-                        },
-                        {
-                            path: 'relationship',
-                            component: Test,
-                            name: 'system-relationship3',
-                            meta: { title: '人员关系管理', menu: true }
-                        },
-                        {
-                            path: 'role',
-                            component: Test,
-                            name: 'system-role3',
-                            meta: { title: '系统角色管理', menu: true }
-                        },
-                        {
-                            path: 'organization',
-                            component: Test,
-                            name: 'system-organization3',
-                            meta: { title: '系统组织管理', menu: true }
-                        },
-                        {
-                            path: 'user',
-                            component: Test,
-                            name: 'system-use3r',
-                            meta: { title: '系统人员管理', menu: true }
-                        },
-                        {
-                            path: 'schedule',
-                            component: Test,
-                            name: 'system-schedule3',
-                            meta: { title: '人员班次管理', menu: true }
-                        },
-                        {
-                            path: 'lookup',
-                            component: Test,
-                            name: 'system-lookup3',
-                            meta: { title: '数据字典管理', menu: true }
                         }
                     ]
                 }
