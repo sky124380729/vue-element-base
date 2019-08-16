@@ -9,8 +9,11 @@
     </el-submenu>
     <!-- 没有子菜单 -->
     <el-menu-item v-wave :index="data.path" v-else>
-        <i :class="(data.meta && data.meta.icon) || 'el-icon-success'" class="icon"></i>
-        <template #title>{{ data.meta && data.meta.title }}</template>
+        
+        <template #title>
+            <i :class="(data.meta && data.meta.icon) || 'el-icon-success'" class="icon"></i>
+            <span>{{ data.meta && data.meta.title }}</span>
+        </template>
     </el-menu-item>
 </template>
 
@@ -19,7 +22,10 @@ export default {
     name: 'SidebarItem',
     props: {
         data: Object,
-        path: String
+        path: {
+            type:String,
+            default:''
+        }
     }
 }
 </script>
