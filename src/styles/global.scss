@@ -1,0 +1,35 @@
+// 全局的布局样式
+.layout {
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    &__side {
+        width: 200px;
+        transition: width 0.3s;
+        background-color: $-color--bg;
+        .logo {
+            width: 80%;
+            margin: 0 auto;
+            height: $height-nav;
+            object-fit: contain;
+        }
+        .el-menu {
+            border-right: none !important;
+        }
+        .el-scrollbar {
+            height: calc(100% - #{$height-nav});
+        }
+        .menu-wrapper {
+            overflow-x: hidden;
+        }
+    }
+    &__box {
+        flex: 1;
+    }
+}
+
+.layout.collapse {
+    .layout__side {
+        width: 60px;
+    }
+}

@@ -1,5 +1,5 @@
 <template>
-    <div class="nav">
+    <div class="layout__nav">
         <i v-if="!collapse" class="icon el-icon-s-fold" @click="setCollapse(true)"></i>
         <i v-else class="icon el-icon-s-unfold" @click="setCollapse(false)"></i>
 
@@ -34,13 +34,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.nav {
-    height: 100%;
+.layout__nav {
+    height: 56px;
     display: flex;
     justify-content: flex-start;
     align-items: center;
     padding: 0 20px;
-    background: $-color--bg;
+    background: $height-nav;
     .icon {
         font-size: 20px;
         cursor: pointer;
@@ -48,6 +48,9 @@ export default {
     }
     .el-breadcrumb {
         margin-left: 20px;
+        ::v-deep .el-breadcrumb__inner {
+            font-weight: normal;
+        }
     }
 }
 </style>

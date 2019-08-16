@@ -1,12 +1,13 @@
 <template>
-    <el-scrollbar class="menu" wrapClass="menu-wrapper">
-        <!-- <h1 class="logo">嘉展科技有限公司</h1> -->
+    <div class="layout__side">
         <img class="logo" src="~imgs/logo.png" alt="" />
-        <!-- default-active="$route.path" 路径等于当前路由，可以让路由在跳转的时候对应高亮 unique-opened 是否只保持一个菜单展开 -->
-        <el-menu :collapse="collapse" background-color="#363C42" text-color="#fff" active-text-color="#ffd04b" router :default-active="activePath" unique-opened>
-            <sidebar-item v-for="item in menuList" :key="item.name" :data="item"></sidebar-item>
-        </el-menu>
-    </el-scrollbar>
+        <el-scrollbar wrapClass="menu-wrapper">
+            <!-- default-active="$route.path" 路径等于当前路由，可以让路由在跳转的时候对应高亮 unique-opened 是否只保持一个菜单展开 -->
+            <el-menu :collapse="collapse" background-color="#363C42" text-color="#fff" active-text-color="#ffd04b" router :default-active="activePath" unique-opened>
+                <sidebar-item v-for="item in menuList" :key="item.name" :data="item"></sidebar-item>
+            </el-menu>
+        </el-scrollbar>
+    </div>
 </template>
 
 <script>
@@ -199,24 +200,3 @@ export default {
     }
 }
 </script>
-
-<style lang="scss" scoped>
-.menu {
-    height: 100%;
-    .logo {
-        width: 90%;
-        margin: 0 auto;
-        height: $nav-height;
-        object-fit: contain;
-    }
-    .el-menu {
-        border-right: none !important;
-        &--collapse {
-            width: inherit;
-        }
-    }
-    ::v-deep .el-scrollbar__wrap {
-        overflow-x: hidden;
-    }
-}
-</style>

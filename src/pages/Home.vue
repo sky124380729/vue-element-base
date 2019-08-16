@@ -1,14 +1,14 @@
 <template>
-    <Grid />
+    <Layout />
 </template>
 
 <script>
-import Grid from '@/pages/layout/Grid'
+import Layout from '@/pages/layout/Layout'
 
 export default {
     name: 'home',
     components: {
-        Grid
+        Layout
     }
 }
 </script>
