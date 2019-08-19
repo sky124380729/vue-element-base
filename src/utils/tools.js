@@ -14,3 +14,21 @@ export const generateUUID = () => {
     })
     return uuid
 }
+
+/**
+ * 函数防抖 (只执行最后一次点击)
+ * @param fn
+ * @param timeout
+ * @returns {Function}
+ * @constructor
+ */
+export const Debounce = (fn, timeout = 300, ctx) => {
+    let timer
+    return (...args) => {
+        clearTimeout(timer)
+        timer = setTimeout(() => {
+            timer = null
+            fn.apply(ctx, args)
+        }, timeout)
+    }
+}

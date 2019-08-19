@@ -3,6 +3,7 @@
     display: flex;
     width: 100vw;
     height: 100vh;
+    // 左侧
     &__side {
         width: 200px;
         transition: width 0.3s;
@@ -23,9 +24,53 @@
             overflow-x: hidden;
         }
     }
+    // 右侧
     &__box {
         flex: 1;
     }
+    // 导航
+    &__nav {
+        height: $height-nav;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 20px;
+        background-color: $-color--bg;
+        color: #fff;
+        &-left {
+            display: flex;
+            align-items: center;
+            .icon {
+                font-size: 20px;
+                cursor: pointer;
+            }
+            .el-breadcrumb {
+                margin-left: 20px;
+                .el-breadcrumb__inner {
+                    font-weight: normal;
+                    &:not(:hover) {
+                        color:#fff;
+                    }
+                }
+            }
+        }
+        &-right {
+            display: flex;
+            align-items: center;
+            .avatar {
+                width: 30px;
+                height: 30px;
+                border-radius: 50%;
+                margin-right: 20px;
+                cursor: pointer;
+            }
+            .el-dropdown {
+                cursor: pointer;
+                color: #fff;
+            }
+        }
+    }
+    // 主体内容区
     &__content {
         box-sizing: border-box;
         background-color: #fff;

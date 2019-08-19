@@ -4,7 +4,8 @@ import Layout from '@/pages/layout/Layout'
 import Test from '@/pages/layout/Test'
 import Test2 from '@/pages/layout/Test2'
 import Test3 from '@/pages/layout/Test3'
-import NotFound from 'pages/layout/NotFound'
+import Login from '@/pages/commonPages/Login'
+import NotFound from '@/pages/commonPages/NotFound'
 
 Vue.use(Router)
 
@@ -18,13 +19,15 @@ export default new Router({
         // },
         {
             path: '/404',
-            name: 'notFound',
             component: NotFound
         },
         {
             path: '/',
-            name: 'Layout',
             component: Layout
+        },
+        {
+            path: '/login',
+            component: Login
         },
         {
             path: '/system',
