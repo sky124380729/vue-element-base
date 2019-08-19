@@ -15,7 +15,7 @@ export default {
             path: 'info/opt/:id',
             component: () => import(/* webpackChunkName: "equipment" */ '@/pages/equipment/opt'),
             props: true,
-            name: 'equipment-info',
+            // name: 'equipment-info',
             meta: { title: '设备信息操作' }
         }
     ]
