@@ -17,6 +17,7 @@ module.exports = {
             .set('pages', resolve('src/pages'))
             .set('static', resolve('src/static'))
             .set('imgs', resolve('src/assets/imgs'))
+            .set('styles', resolve('src/styles'))
     },
     // 生产环境不生成.map文件
     productionSourceMap: false,

@@ -1,35 +1,47 @@
 <template>
-    <el-button v-debounce:click="2000" type="success" @click="test" @blur="xxx">xxxxxxxxxxx</el-button>
+    <m-search :queryArr="queryArr"></m-search>
 </template>
 
 <script>
 export default {
     data() {
         return {
-            type: 'el-button'
-        }
-    },
-    directives: {
-        debounce: {
-            inserted(el, binding, vnode) {
-                const mouseType = binding.arg
-                const timeout = binding.value || 300
-                const vm = vnode.componentInstance
-                el.addEventListener(mouseType, () => {
-                    if (!vm.loading) {
-                        vm.loading = true
-                        setTimeout(() => {
-                            vm.loading = false
-                        }, timeout)
-                    }
-                })
-            }
-        }
-    },
-    methods: {
-        xxx() {},
-        test() {
-            console.log('Hello World')
+            queryArr: [
+                {
+                    tag: 'el-button'
+                },
+                {
+                    tag: 'el-button'
+                },
+                {
+                    tag: 'el-button'
+                },
+                {
+                    key: 'name',
+                    tag: 'el-input',
+                    placeholder: '请输入呵呵呵',
+                    width: 1000
+                },
+                {
+                    key: 'age',
+                    tag: 'el-select',
+                    placeholder: '请选择哦吼',
+                    options: [
+                        {
+                            label: '111',
+                            value: 111
+                        },
+                        {
+                            label: '222',
+                            value: 222
+                        }
+                    ]
+                },
+                {
+                    key: 'sasd',
+                    tag: 'el-date-picker'
+                }
+            ]
         }
     }
 }

@@ -1,11 +1,14 @@
 // 全局的布局样式
 .layout {
-    display: flex;
     width: 100vw;
     height: 100vh;
+    overflow: hidden;
+    // background-color: $-color--bg;
     // 左侧
     &__side {
+        float: left;
         width: 200px;
+        height: 100%;
         transition: width 0.3s;
         background-color: $-color--bg;
         .logo {
@@ -26,7 +29,8 @@
     }
     // 右侧
     &__box {
-        flex: 1;
+        margin-left: 200px;
+        transition: margin-left .3s;
     }
     // 导航
     &__nav {
@@ -82,5 +86,8 @@
 .layout.collapse {
     .layout__side {
         width: 60px;
+    }
+    .layout__box {
+        margin-left: 60px;
     }
 }

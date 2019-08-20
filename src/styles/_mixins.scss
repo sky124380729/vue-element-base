@@ -3,3 +3,11 @@
     align-items: $align;
     justify-content: $justify;
 }
+
+@mixin clearfix() {
+  &::after {
+    display: block;
+    content: "";
+    clear: both;
+  }
+}
