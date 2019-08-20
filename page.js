@@ -38,17 +38,17 @@ export default {
 <style lang="scss" scoped></style>
 `
 // route file
-const routerFile = module => `// write your comment here...
+const routerFile = module => `// 默认创建的模板...
+import Layout from 'pages/layout/Layout'
 export default [
     {
         path: '/${module}',
-        name: '',
-        redirect: '/${module}',
-        component: () => import('@/pages/layout/Layout'),
+        name: '${module}',
+        component: Layout,
         children: [
             {
-                path: '',
-                name: '',
+                path: 'index',
+                name: '${module}-index',
                 component: () => import(/* webpackChunkName: '${module}' */ '@/pages/${module}/index')
             }
         ]
@@ -121,6 +121,6 @@ process.stdin.on('data', chunk => {
         errorLog(error)
     }
 })
-// process.stdin.on('end', () => {
-//     defaultLog('create module success')
-// })
+/* process.stdin.on('end', () => {
+    defaultLog('create module success')
+}) */
