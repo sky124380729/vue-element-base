@@ -1,5 +1,10 @@
 <template>
-    <m-search :queryArr="queryArr"></m-search>
+    <m-table :queryArr="queryArr">
+        <el-table-column label="序号" type="index" width="400px"></el-table-column>
+        <el-table-column label="姓名"></el-table-column>
+        <el-table-column label="性别"></el-table-column>
+        <el-table-column label="年龄"></el-table-column>
+    </m-table>
 </template>
 
 <script>
@@ -8,24 +13,14 @@ export default {
         return {
             queryArr: [
                 {
-                    tag: 'el-button'
-                },
-                {
-                    tag: 'el-button'
-                },
-                {
-                    tag: 'el-button'
-                },
-                {
                     key: 'name',
                     tag: 'el-input',
-                    placeholder: '请输入呵呵呵',
-                    width: 1000
+                    ph: '请输入呵呵呵'
                 },
                 {
                     key: 'age',
                     tag: 'el-select',
-                    placeholder: '请选择哦吼',
+                    ph: '请选择哦吼',
                     options: [
                         {
                             label: '111',
@@ -39,7 +34,8 @@ export default {
                 },
                 {
                     key: 'sasd',
-                    tag: 'el-date-picker'
+                    tag: 'el-date-picker',
+                    editable: true
                 }
             ]
         }

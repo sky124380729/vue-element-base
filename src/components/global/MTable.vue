@@ -1,5 +1,6 @@
 <template>
-    <div class="m-table">
+    <div class="m-table" :class="{ hasSearch: queryArr.length }">
+        <m-search v-if="queryArr.length" :queryArr="queryArr" @getConditions="getConditions"></m-search>
         <el-table
             v-bind="$attrs"
             v-on="$listeners"
@@ -24,7 +25,7 @@
             layout="total, sizes, prev, pager, next, jumper"
         >
         </el-pagination>
-        <i v-if="renovate" class="renovate el-icon-refresh-right" :style="renovateStyle" @click="getList('renovate')"></i>
+        <i v-if="renovate" class="renovate el-icon-refresh-right" @click="getList('renovate')"></i>
     </div>
 </template>
 
@@ -33,6 +34,11 @@ export default {
     name: 'mTable',
     inheritAttrs: false,
     props: {
+        // 是否带有查询条件
+        queryArr: {
+            type: Array,
+            default: () => []
+        },
         // 是否有斑马线
         stripe: {
             type: Boolean,
@@ -62,26 +68,17 @@ export default {
             sortStr: this.sortRules // 排序信息
         }
     },
-    computed: {
-        renovateStyle() {
-            const table = document.querySelector('.el-table')
-            const WRAPPER_TOP = table && table.getBoundingClientRect().top
-            return {
-                position: 'absolute',
-                right: '20px',
-                fontSize: '20px',
-                cursor: 'pointer',
-                top: WRAPPER_TOP + 12 + 'px'
-            }
-        }
-    },
     methods: {
         getList() {
             this.loading = true
             setTimeout(() => {
-                this.tableList = [{}, {}, {}]
+                this.tableList = Array.apply(this, { length: Math.ceil(Math.random() * 10) })
                 this.loading = false
-            }, 2000)
+            }, 1000)
+        },
+        getConditions(conditions) {
+            this.conditions = conditions
+            this.getList('getConditions')
         },
         sizeChange() {},
         sortChange() {}
@@ -94,5 +91,26 @@ export default {
 .m-table {
     @include clearfix;
     position: relative;
+    .m-search {
+        margin-bottom: 15px;
+    }
+    .renovate {
+        position: absolute;
+        top: 13px;
+        right: 18px;
+        font-size: 20px;
+        font-weight: bold;
+        color: #b79ba8;
+        transition: color 0.6s;
+        cursor: pointer;
+        &:hover {
+            color: $-color--primary;
+        }
+    }
+}
+.m-table.hasSearch {
+    .renovate {
+        top: 60px;
+    }
 }
 </style>
