@@ -89,8 +89,8 @@ export default {
 <style lang="scss" scoped>
 @import '~styles/mixins';
 .m-table {
-    @include clearfix;
     position: relative;
+    overflow: hidden;
     .m-search {
         margin-bottom: 15px;
     }

@@ -1,16 +1,21 @@
 <template>
-    <m-table :queryArr="queryArr">
-        <el-table-column label="序号" type="index" width="400px"></el-table-column>
-        <el-table-column label="姓名"></el-table-column>
-        <el-table-column label="性别"></el-table-column>
-        <el-table-column label="年龄"></el-table-column>
-    </m-table>
+    <section class="test">
+        <m-table :queryArr="queryArr">
+            <el-table-column label="序号" type="index" width="400px"></el-table-column>
+            <el-table-column label="姓名"></el-table-column>
+            <el-table-column label="性别"></el-table-column>
+            <el-table-column label="年龄"></el-table-column>
+        </m-table>
+        <m-button debounce @click="test">试试呢</m-button>
+        <m-select v-model="x" :options="[{ label: 'xxx', value: 'xxx' }]"></m-select>
+    </section>
 </template>
 
 <script>
 export default {
     data() {
         return {
+            x: null,
             queryArr: [
                 {
                     key: 'name',
@@ -35,9 +40,14 @@ export default {
                 {
                     key: 'sasd',
                     tag: 'el-date-picker',
-                    editable: true
+                    ph: '请选择时间'
                 }
             ]
+        }
+    },
+    methods: {
+        test() {
+            console.log('说试试就试试')
         }
     }
 }

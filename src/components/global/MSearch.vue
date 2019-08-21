@@ -95,6 +95,9 @@ export default {
                 ])
         )
     },
+    renderError(createElement, err) {
+        return createElement('pre', { style: { color: 'red' } }, err.stack)
+    },
     methods: {
         sendQuery() {
             this.$emit('getConditions', this.conditions)
