@@ -16,7 +16,7 @@ export default {
         // 设置响应属性
         for (let i in this.queryArr) {
             const v = this.queryArr[i]
-            v.key && this.$set(this.conditions, v.key, '')
+            v.key && this.$set(this.conditions, v.key, null)
         }
     },
     render(createElement) {
@@ -35,18 +35,17 @@ export default {
                                 width: (v.width || 200) + 'px'
                             },
                             attrs: {
-                                placeholder: v.placeholder
+                                placeholder: v.ph
                             },
                             props: {
                                 value: this.conditions[v.key],
                                 // 快捷选项
-                                clearable: v.clearable || true,
+                                clearable: v.clearable !== false,
                                 editable: v.editable || false,
                                 // 组件自己的props选项
                                 ...v.props
                             },
                             on: {
-                                change: e => this.onChange(e),
                                 input: val => {
                                     this.conditions[v.key] = val
                                 }
@@ -59,6 +58,7 @@ export default {
                     createElement(
                         'el-button',
                         {
+                            class: 'm-search__btn',
                             props: {
                                 type: 'primary'
                             },
@@ -71,6 +71,7 @@ export default {
                     createElement(
                         'el-button',
                         {
+                            class: 'm-search__btn',
                             props: {
                                 type: 'danger'
                             },
@@ -81,11 +82,20 @@ export default {
                         '清空'
                     )
                 ])
+                .concat([
+                    this.$scopedSlots.default
+                        ? createElement(
+                              'div',
+                              {
+                                  class: 'm-search__slots'
+                              },
+                              this.$scopedSlots.default()
+                          )
+                        : null
+                ])
         )
     },
     methods: {
-        onInput() {},
-        onChange() {},
         sendQuery() {
             this.$emit('getConditions', this.conditions)
         },
@@ -118,6 +128,9 @@ export default {
     justify-content: flex-end;
     &__item {
         margin-right: 10px;
+    }
+    &__slots {
+        margin-left: 10px;
     }
 }
 </style>
