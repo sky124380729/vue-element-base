@@ -30,6 +30,7 @@
 </template>
 
 <script>
+import { generateUUID } from '@/utils/tools'
 export default {
     name: 'mTable',
     inheritAttrs: false,
@@ -62,19 +63,28 @@ export default {
             totalPages: 0, // 总页数
             currentPage: 1, // 当前页码
             pageSize: 10, // 每页显示多少条
-            tableList: [{}, {}], // 列表数据
+            tableList: [], // 列表数据
             loading: false, // 加载中
             getted: false, // 是否请求完了数据
             sortStr: this.sortRules // 排序信息
         }
     },
+    created() {
+        this.getList()
+    },
     methods: {
         getList() {
             this.loading = true
+            this.tableList = []
             setTimeout(() => {
-                this.tableList = Array.apply(this, { length: Math.ceil(Math.random() * 10) })
+                let i = -1
+                while (++i < 10) {
+                    this.tableList.push({
+                        id: generateUUID()
+                    })
+                }
                 this.loading = false
-            }, 1000)
+            }, 500)
         },
         getConditions(conditions) {
             this.conditions = conditions

@@ -5,6 +5,11 @@
             <el-table-column label="姓名"></el-table-column>
             <el-table-column label="性别"></el-table-column>
             <el-table-column label="年龄"></el-table-column>
+            <el-table-column label="操作" class-name="operate">
+                <template v-slot="{ row, $index }">
+                    <el-button size="mini" @click="goEdit(row.id)">{{ $index }}</el-button>
+                </template>
+            </el-table-column>
         </m-table>
         <m-button debounce @click="test">试试呢</m-button>
         <m-select v-model="x" :options="[{ label: 'xxx', value: 'xxx' }]"></m-select>
@@ -48,6 +53,12 @@ export default {
     methods: {
         test() {
             console.log('说试试就试试')
+        },
+        goEdit(id) {
+            this.$router.push({
+                name: 'equipmentOpt',
+                params: { id }
+            })
         }
     }
 }
