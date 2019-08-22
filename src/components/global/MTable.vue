@@ -1,6 +1,8 @@
 <template>
     <div class="m-table" :class="{ hasSearch: queryArr.length }">
-        <m-search v-if="queryArr.length" :queryArr="queryArr" @getConditions="getConditions"></m-search>
+        <m-sticky :sticky-top="96" :z-index="2">
+            <m-search v-if="queryArr.length" :queryArr="queryArr" @getConditions="getConditions"></m-search>
+        </m-sticky>
         <el-table
             v-bind="$attrs"
             v-on="$listeners"

@@ -1,7 +1,7 @@
 <template>
     <div class="layout__side">
         <img class="logo" src="~imgs/logo.png" alt="" />
-        <el-scrollbar wrapClass="menu-wrapper">
+        <el-scrollbar wrapClass="wrapper-y">
             <!-- 
                 default-active="$route.path" 路径等于当前路由，可以让路由在跳转的时候对应高亮 
                 unique-opened 是否只保持一个菜单展开

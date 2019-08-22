@@ -1,9 +1,14 @@
 // 全局的布局样式
+.wrapper-x {
+    overflow-y: hidden;
+}
+.wrapper-y {
+    overflow-x: hidden;
+}
 .layout {
     width: 100vw;
     height: 100vh;
     overflow: hidden;
-    // background-color: $-color--bg;
     // 左侧
     &__side {
         float: left;
@@ -23,14 +28,19 @@
         .el-scrollbar {
             height: calc(100% - #{$height-nav});
         }
-        .menu-wrapper {
-            overflow-x: hidden;
-        }
     }
     // 右侧
     &__box {
+        display: flex;
+        flex-direction: column;
         margin-left: 200px;
         transition: margin-left .3s;
+        background-color: #fff;
+        height: 100%;
+        overflow: hidden;
+        &>.el-scrollbar{
+            flex:1;
+        }
     }
     // 导航
     &__nav {
@@ -77,9 +87,7 @@
     // 主体内容区
     &__content {
         box-sizing: border-box;
-        background-color: #fff;
         padding: 20px;
-        height: calc(100vh - #{$height-nav} - #{$height-tag});
     }
 }
 

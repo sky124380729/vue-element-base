@@ -129,6 +129,10 @@ export default {
 .m-search {
     display: flex;
     justify-content: flex-end;
+    background: #fff;
+    padding: 8px;
+    overflow: hidden;
+    box-shadow: 0 0 5px 1px rgba(0, 21, 41, 0.08);
     &__item {
         margin-right: 10px;
     }

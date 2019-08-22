@@ -33,13 +33,6 @@ export default {
             component: Test,
             name: 'systemRole',
             meta: { title: '系统角色管理', menu: true }
-        },
-        {
-            path: 'equipment/:id',
-            props: true,
-            component: () => import('pages/equipment/opt'),
-            name: 'equipmentOpt',
-            meta: { title: '设备编辑', menu: true }
         }
     ]
 }
