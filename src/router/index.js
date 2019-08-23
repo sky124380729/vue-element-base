@@ -11,3 +11,5 @@ export default new Router({
     scrollBehavior: () => ({ y: 0 }),
     routes: CommonRouters.concat(RouterConfig)
 })
+
+console.log(CommonRouters.concat(RouterConfig), '注册的完整路由')

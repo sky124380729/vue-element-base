@@ -6,8 +6,8 @@ const fs = require('fs')
 const chalk = require('chalk')
 const reslove = file => path.resolve(__dirname, './src', file)
 // symbol const
-const RouterSymbol = Symbol('router'),
-    PagesSymbol = Symbol('pages')
+const RouterSymbol = Symbol('router')
+const PagesSymbol = Symbol('pages')
 // root path
 const rootPath = {
     [RouterSymbol]: reslove('router/modules'),
@@ -16,22 +16,24 @@ const rootPath = {
 //loggs
 const errorLog = error => console.log(chalk.red(`${error}`))
 const defaultLog = log => console.log(chalk.magenta(`${log}`))
-// module name
-let moduleName = new String()
-// let fileType = new String()
-//const string
+
 const vueFile = module => `<template>
-    <div>'${module}'</div>
+    <div>${module}</div>
 </template>
 
 <script>
 export default {
     name: '${module}',
+    props: {
+        id: String
+    },
     data() {
         return {}
     },
     methods: {},
-    created() {}
+    created() {
+        console.log(this.id)
+    }
 }
 </script>
 
@@ -44,12 +46,19 @@ export default [
     {
         path: '/${module}',
         name: '${module}',
+        redirect: '/${module}/list',
         component: Layout,
         children: [
             {
-                path: 'index',
-                name: '${module}-index',
-                component: () => import(/* webpackChunkName: '${module}' */ '@/pages/${module}/index')
+                path: 'list',
+                name: '${module}-list',
+                component: () => import(/* webpackChunkName: '${module}' */ '@/pages/${module}/List')
+            },
+            {
+                path: 'opt/(view/)?:id?',
+                props: true,
+                name: '${module}-opt',
+                component: () => import(/* webpackChunkName: '${module}' */ '@/pages/${module}/Opt')
             }
         ]
     }
@@ -78,18 +87,17 @@ const generateFile = async (filePath, content, dirPath = '') => {
         errorLog(error)
     }
 }
-// module-method map
 const generates = new Map([
+    // 创建页面的逻辑
     [
         'page',
         async module => {
-            // module file
             const filePath = path.join(rootPath[PagesSymbol], module)
-            const vuePath = path.join(filePath, '/index.vue')
-            await generateFile(vuePath, vueFile(module), filePath)
+            await generateFile(path.join(filePath, '/List.vue'), vueFile(module), filePath)
+            await generateFile(path.join(filePath, '/Opt.vue'), vueFile(module), filePath)
         }
     ],
-    // router is not need new folder
+    // 窗机路由的逻辑
     [
         'router',
         async module => {
@@ -97,26 +105,24 @@ const generates = new Map([
             await generateFile(routerPath, routerFile(module))
         }
     ]
+    // TODO:创建api的逻辑
 ])
 console.log(chalk.cyanBright('请输入模块的英文名称(name)'))
 // files
-const files = ['page', 'router']
+const files = ['router', 'page']
 // 和命令行进行交互 获取的创建的模块名称
-process.stdin.on('data', chunk => {
+process.stdin.on('data', async chunk => {
     try {
-        if (!moduleName) {
-            moduleName = chunk
-        } else {
-            chunk = chunk.slice(0, -2) // delete /n
-            files.forEach(async (el, index) => {
-                // 执行创建语句
-                await generates.get(`${el}`).call(null, chunk.toString())
-                if (index === files.length - 1) {
-                    console.log(chalk.blueBright('恭喜你，文件创建成功~'))
-                    process.stdin.emit('end')
-                }
-            })
-        }
+        // 获取输入的模块名称并删除/n
+        chunk = chunk.slice(0, -2)
+        await files.forEach(async el => {
+            // 执行创建语句
+            await generates.get(`${el}`).call(null, chunk.toString())
+        })
+        setTimeout(() => {
+            console.log(chalk.blueBright('恭喜你，文件创建成功~'))
+        }, 0)
+        process.stdin.emit('end')
     } catch (error) {
         errorLog(error)
     }

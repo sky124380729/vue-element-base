@@ -7,7 +7,7 @@
             <el-breadcrumb separator-class="el-icon-arrow-right">
                 <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
                 <transition-group name="breadcrumb">
-                    <el-breadcrumb-item v-for="item in breadList" :key="item.path">{{ item.name }}</el-breadcrumb-item>
+                    <el-breadcrumb-item v-for="item in breadList" :key="item.path">{{ item.mate && item.meta.title }}</el-breadcrumb-item>
                 </transition-group>
             </el-breadcrumb>
         </div>
