@@ -9,6 +9,7 @@
             :render-content="renderContent"
             node-key="id"
             ref="tree"
+            draggable
             highlight-current
             :props="defaultProps"
         >
@@ -25,6 +26,7 @@
                     <el-input></el-input>
                 </el-form-item>
             </el-form>
+            <span slot="footer"></span>
         </el-dialog>
     </div>
 </template>
