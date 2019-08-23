@@ -48,8 +48,10 @@ export default {
         this.handleScroll()
     },
     destroyed() {
-        document.querySelector('.app-main').removeEventListener('scroll', this.handleScroll)
-        document.querySelector('.app-main').removeEventListener('resize', this.handleResize)
+        if (document.querySelector('.app-main')) {
+            document.querySelector('.app-main').removeEventListener('scroll', this.handleScroll)
+            document.querySelector('.app-main').removeEventListener('resize', this.handleResize)
+        }
     },
     methods: {
         sticky() {
