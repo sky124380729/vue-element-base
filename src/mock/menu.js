@@ -32,11 +32,13 @@ export default [
                     {
                         id: '7c4475637c38409ca865a799eb0dcf33',
                         title: '新增',
+                        name: 'system-resource-add',
                         isBtn: true
                     },
                     {
                         id: '7c4475637c38409ca865a799eb044f00',
                         title: '编辑',
+                        name: 'system-resource-edit',
                         isBtn: true
                     }
                 ]
@@ -50,11 +52,13 @@ export default [
                     {
                         id: '7c4475637c38409ca865a799e30dcf33',
                         title: '新增',
+                        name: 'system-person-add',
                         isBtn: true
                     },
                     {
                         id: '7c4475637c38409ca865a79944044f00',
                         title: '编辑',
+                        name: 'system-person-edit',
                         isBtn: true
                     }
                 ]

@@ -163,6 +163,7 @@ export default {
             )
         },
         append(data) {
+            console.log(data)
             // const newChild = { id: generateUUID(), label: 'testtest', children: [] }
             // if (!data.children) {
             //     this.$set(data, 'children', [])
@@ -171,6 +172,7 @@ export default {
             this.menuVisible = true
         },
         remove(node, data) {
+            console.log(node, data)
             // const parent = node.parent
             // const children = parent.data.children || parent.data
             // const index = children.findIndex(d => d.id === data.id)

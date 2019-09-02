@@ -1,17 +1,19 @@
 <template>
-    <!-- 有子菜单 -->
-    <el-submenu :index="resolvePath(data.path)" v-if="data.children && data.children.length">
-        <template slot="title">
-            <i :class="data.icon || 'el-icon-success'" class="icon"></i>
-            <span>{{ data.title }}</span>
-        </template>
-        <sidebar-item v-for="child in data.children" :key="child.name" :data="child" />
-    </el-submenu>
-    <!-- 没有子菜单 -->
-    <el-menu-item :index="resolvePath(data.path)" v-else>
-        <i :class="data.icon || 'el-icon-success'" class="icon"></i>
-        <span slot="title">{{ data.title }}</span>
-    </el-menu-item>
+    <div class="sidebar-item">
+        <!-- 有子菜单 -->
+        <el-submenu :index="resolvePath(data.path)" v-if="data.children && data.children.length">
+            <template slot="title">
+                <i v-if="data.icon" :class="data.icon" class="icon"></i>
+                <span slot="title">{{ data.title }}</span>
+            </template>
+            <sidebar-item v-for="child in data.children" :key="child.name" :data="child" />
+        </el-submenu>
+        <!-- 没有子菜单 -->
+        <el-menu-item :index="resolvePath(data.path)" v-else>
+            <i v-if="data.icon" :class="data.icon" class="icon"></i>
+            <span slot="title">{{ data.title }}</span>
+        </el-menu-item>
+    </div>
 </template>
 
 <script>

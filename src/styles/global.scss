@@ -92,8 +92,23 @@
 }
 
 .layout.collapse {
+    // 收起的时候左侧菜单树的样式修复
     .layout__side {
         width: 60px;
+        .el-submenu {
+            & > .el-submenu__title {
+                &  > span {
+                    width: 0;
+                    height: 0;
+                    overflow: hidden;
+                    visibility: hidden;
+                    display: inline-block;
+                }
+                .el-submenu__icon-arrow {
+                    display: none;
+                }
+            }
+        }
     }
     .layout__box {
         margin-left: 60px;
