@@ -25,18 +25,35 @@ export const compIndex = {
             from: 'bus',
             default: null
         }
+    },
+    methods: {
+        switchPage(comp, id = null, view = false) {
+            const { page } = this
+            page.comp = comp
+            page.id = id
+            page.view = view
+        }
     }
 }
 
 // bus操作页混入
 export const compOpt = {
     props: {
-        id: String
+        id: String,
+        view: Boolean
     },
     inject: {
         page: {
             from: 'bus',
             default: null
+        }
+    },
+    methods: {
+        switchPage(comp, id = null, view = false) {
+            const { page } = this
+            page.comp = comp
+            page.id = id
+            page.view = view
         }
     }
 }

@@ -17,9 +17,7 @@ export default {
     },
     methods: {
         go() {
-            const { page } = this
-            page.id = '123213'
-            page.comp = 'Opt'
+            this.switchPage('Opt', '1212')
         }
     }
 }

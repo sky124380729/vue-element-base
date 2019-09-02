@@ -21,7 +21,8 @@ export default {
                 name: 'system-role',
                 params: {
                     id: 'abc-123',
-                    comp: 'Opt'
+                    comp: 'Opt',
+                    view: true
                 }
             })
         },
