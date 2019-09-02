@@ -1,7 +1,8 @@
 const files = require.context('.', true, /\.js$/)
-let configRouters = []
+let modules = {}
 files.keys().forEach(key => {
     if (key === './index.js') return
-    configRouters = configRouters.concat(files(key).default) // 读取出文件中的default模块
+    const module = key.replace(/\.\/(.*)\.js/, '$1')
+    modules[module] = files(key).default
 })
-export default configRouters
+export default modules
