@@ -1,4 +1,4 @@
-import router from './router'
+import router from './index.js'
 // import store from './store'
 import NProgress from 'nprogress' // progress bar
 import 'nprogress/nprogress.css' // progress bar style

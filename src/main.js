@@ -7,8 +7,8 @@ import directives from './directives' // 全局指令
 import plugins from './utils/plugins' // 全局指令
 import 'element-ui/lib/theme-chalk/index.css' // element css
 import './styles/index.scss' // 全局 css
-import './components/global' // 全局 c组件
-import './permission' // 全局 c组件
+import './components/global' // 全局 css
+import './router/permission' // 权限js
 
 Vue.config.productionTip = false
 
