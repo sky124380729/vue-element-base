@@ -6,9 +6,8 @@
             </div>
             <div class="navTags__box">
                 <el-tag
-                    type="primary"
-                    effect="plain"
                     @contextmenu.prevent.native="openMenu(item, $event)"
+                    @click="$router.push({ name: item.name })"
                     :class="{ isActive: $route.path === item.path }"
                     closable
                     size="medium"
@@ -16,7 +15,7 @@
                     :key="item.name"
                 >
                     <span class="dotted"></span>
-                    <router-link :to="item.path">{{ item.title }}</router-link>
+                    <span>{{ item.title }}</span>
                 </el-tag>
             </div>
             <div class="navTags__btn navTags__btn--right">
@@ -129,9 +128,10 @@ export default {
         openMenu(tag, e) {
             this.visible = true
             this.selectedTag = tag
-            const offsetLeft = this.$el.getBoundingClientRect().left // container margin left
-            this.left = e.clientX - offsetLeft
-            this.top = e.clientY - 25
+            // const offsetLeft = this.$el.getBoundingClientRect().left // container margin left
+            console.log(e.target)
+            this.left = e.clientX
+            this.top = e.clientY
         },
         closeMenu() {
             this.visible = false
@@ -159,8 +159,9 @@ export default {
         text-align: center;
         cursor: pointer;
         font-size: 16px;
-        background-color: #e6e6e6;
+        background-color: #363c42;
         border: 1px solid #fff;
+        color: #fff;
         transition: color 0.3s;
         &:hover {
             color: #2d8cf0;

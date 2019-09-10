@@ -24,14 +24,8 @@ export default new Vuex.Store({
             if (state.navTags.find(item => item.path === route.path)) return
             // 添加tag标签导航
             state.navTags.push(route)
-            // 设置最大长度
-            // if (state.navTags.length === CACHE_LIMIT + 1) {
-            //     state.navTags.shift()
-            // }
-            // ================> 添加缓存列表(目前采用name的方式进行缓存)
-            if (route.cache) {
-                state.cachedViews.push(route.name)
-            }
+            // 添加缓存列表(目前采用name的方式进行缓存)
+            state.cachedViews.push(route.name)
         },
         // 删除tag导航，以及存储的cache
         DEL_NAVTAGS: (state, route) => {
@@ -42,7 +36,7 @@ export default new Vuex.Store({
                     break
                 }
             }
-            // ================> 删除缓存
+            // 删除缓存
             for (const i of state.cachedViews) {
                 if (i === route.name) {
                     const index = state.cachedViews.indexOf(i)
@@ -70,7 +64,7 @@ export default new Vuex.Store({
                     break
                 }
             }
-            // ================> 删除缓存
+            // 删除缓存
             for (const i of state.cachedViews) {
                 if (i === route.name) {
                     const index = state.cachedViews.indexOf(i)
