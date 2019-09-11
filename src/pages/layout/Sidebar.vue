@@ -15,22 +15,11 @@
 
 <script>
 import SidebarItem from './SidebarItem'
-import menus from '@/mock/menu'
+import { mapGetters } from 'vuex'
 export default {
     name: 'sidebar',
     computed: {
-        menuList() {
-            // 过滤掉按钮
-            const filterMenus = menus => {
-                return menus.filter(menu => {
-                    if (menu.children && menu.children.length) {
-                        menu.children = filterMenus(menu.children)
-                    }
-                    return !menu.isBtn
-                })
-            }
-            return filterMenus(menus)
-        },
+        ...mapGetters(['menuList']),
         collapse() {
             return this.$store.state.collapse
         },

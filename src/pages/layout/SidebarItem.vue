@@ -3,15 +3,15 @@
         <!-- 有子菜单 -->
         <el-submenu :index="resolvePath(data.path)" v-if="data.children && data.children.length">
             <template slot="title">
-                <i v-if="data.icon" :class="data.icon" class="icon"></i>
-                <span slot="title" :style="{ marginLeft: data.icon ? '0' : '10px' }">{{ data.title }}</span>
+                <i :class="(data.meta && data.meta.icon) || 'el-icon-success'" class="icon"></i>
+                <span slot="title">{{ data.meta && data.meta.title }}</span>
             </template>
-            <sidebar-item v-for="child in data.children" :key="child.name" :data="child" />
+            <sidebar-item v-for="child in data.children" :key="child.name" :data="child" :base-path="data.path" />
         </el-submenu>
         <!-- 没有子菜单 -->
         <el-menu-item :index="resolvePath(data.path)" v-else>
-            <i v-if="data.icon" :class="data.icon" class="icon"></i>
-            <span slot="title" :style="{ marginLeft: data.icon ? '0' : '10px' }">{{ data.title }}</span>
+            <i :class="(data.meta && data.meta.icon) || 'el-icon-success'" class="icon"></i>
+            <span slot="title">{{ data.meta && data.meta.title }}</span>
         </el-menu-item>
     </div>
 </template>
@@ -20,13 +20,16 @@
 export default {
     name: 'sidebarItem',
     props: {
-        data: Object
+        data: Object,
+        basePath: {
+            type: String,
+            default: ''
+        }
     },
     methods: {
-        resolvePath(path = '') {
-            /* const p = this.path === '' ? this.path : this.path + '/'
-            return p + path */
-            return path
+        resolvePath(path) {
+            const base = this.basePath === '' ? this.basePath : this.basePath + '/'
+            return base + path
         }
     }
 }

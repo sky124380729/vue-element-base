@@ -1,20 +1,41 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import Cookie from 'js-cookie'
+import { asyncRouter } from '../router'
+import { deepClone } from '@/utils/tools'
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
     state: {
         collapse: false, // 菜单栏是否收缩
+        authorized: false, // 是否拉取了授权菜单
+        accsessRoutes: [], // 已注册的路由
         navTags: [], // 标签导航列表
         cachedViews: [] // 缓存的页面
     },
     getters: {
         cachedViews: state => state.cachedViews,
-        menuList: state => state.menuList,
+        accsessRoutes: state => state.accsessRoutes,
+        menuList: state => {
+            // 过滤出menu为true的路由
+            const filterMenus = menus => {
+                return menus.filter(item => {
+                    if (item.children && item.children.length) {
+                        item.children = filterMenus(item.children)
+                    }
+                    return item.meta.menu
+                })
+            }
+            return filterMenus(state.accsessRoutes)
+        },
         navTags: state => state.navTags
     },
     mutations: {
+        SET_ACCSESS_ROUTES(state, accsessRoutes) {
+            state.authorized = true
+            state.accsessRoutes = accsessRoutes
+        },
         SET_COLLAPSE(state, flag) {
             state.collapse = flag
         },
@@ -77,11 +98,35 @@ export default new Vuex.Store({
         DEL_ALL_NAVTAGS: state => {
             state.navTags = []
             state.cachedViews = []
+        },
+        // 退出登录
+        LOGOUT: state => {
+            state.navTags = []
+            state.cachedViews = []
+            Cookie.remove('token')
         }
     },
     actions: {
-        setMenuList: ({ commit }, payload) => {
-            console.log(commit, payload)
+        setAccessRoutes: ({ commit }) => {
+            console.log(1)
+            return new Promise(resolve => {
+                // TODO:假装我这个nameList是异步获取的,嘿嘿
+                const nameList = ['system', 'system-role', 'system-resource']
+                const filterRouter = routes => {
+                    return routes.filter(route => {
+                        if (route.children && route.children.length) {
+                            route.children = filterRouter(route.children)
+                        }
+                        return (route.meta && route.meta.always) || nameList.indexOf(route.name) !== -1
+                    })
+                }
+                const accessRoutes = filterRouter(deepClone(asyncRouter))
+                commit('SET_ACCSESS_ROUTES', accessRoutes)
+                resolve(accessRoutes)
+            })
+        },
+        logout: ({ commit }) => {
+            commit('LOGOUT')
         }
     }
 })

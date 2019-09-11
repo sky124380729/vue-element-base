@@ -12,6 +12,7 @@
 
 <script>
 export default {
+    name: 'system-resource',
     data() {
         return {}
     },

@@ -32,3 +32,23 @@ export const Debounce = (fn, timeout = 300, ctx) => {
         }, timeout)
     }
 }
+
+/**
+ * 对象深拷贝
+ * @param obj
+ * @returns obj
+ * @constructor
+ */
+export const deepClone = obj => {
+    let result = Array.isArray(obj) ? [] : {}
+    for (let key in obj) {
+        if (obj.hasOwnProperty(key)) {
+            if (typeof obj[key] === 'object' && obj[key] !== null) {
+                result[key] = deepClone(obj[key]) // 递归复制
+            } else {
+                result[key] = obj[key]
+            }
+        }
+    }
+    return result
+}

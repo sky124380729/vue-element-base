@@ -41,10 +41,11 @@ export default {
         }
     },
     methods: {
-        navCommand(command) {
+        async navCommand(command) {
             if (command === 'setting') {
                 this.$message.info('敬请期待~')
             } else if (command === 'logout') {
+                await this.$store.dispatch('logout')
                 this.$router.push('/login')
             }
         },

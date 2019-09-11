@@ -13,6 +13,7 @@
 </template>
 
 <script>
+import Cookies from 'js-cookie'
 export default {
     name: 'login',
     data() {
@@ -21,8 +22,8 @@ export default {
         }
     },
     methods: {
-        submitForm() {
-            sessionStorage.setItem('token', 'token')
+        async submitForm() {
+            Cookies.set('token', 'whosyourdaddy', { expires: 7 })
             this.$message({
                 message: '登录成功',
                 type: 'success'
