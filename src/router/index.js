@@ -27,11 +27,13 @@ export const resetRouter = () => {
 export const asyncRouter = [
     {
         path: '*',
-        redirect: '/404'
+        redirect: '/404',
+        meta: { always: true }
     },
     {
         path: '/404',
-        component: NotFound
+        component: NotFound,
+        meta: { always: true }
     },
     {
         path: '/platform',
@@ -54,6 +56,13 @@ export const asyncRouter = [
         name: 'system',
         meta: { title: '系统管理', icon: 'el-icon-news', menu: true },
         children: modules.system
+    },
+    {
+        path: '/test',
+        component: Layout,
+        name: 'test',
+        meta: { title: '组件测试', icon: 'el-icon-news', menu: true },
+        children: modules.test
     }
 ]
 

@@ -20,9 +20,6 @@ export default {
     computed: {
         ...mapState(['collapse'])
     },
-    created() {
-        // console.log(this.$ELEMENT)
-    },
     components: {
         Sidebar,
         Navbar,

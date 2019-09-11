@@ -2,7 +2,6 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import Cookie from 'js-cookie'
 import { asyncRouter } from '../router'
-import { deepClone } from '@/utils/tools'
 
 Vue.use(Vuex)
 
@@ -108,10 +107,9 @@ export default new Vuex.Store({
     },
     actions: {
         setAccessRoutes: ({ commit }) => {
-            console.log(1)
             return new Promise(resolve => {
                 // TODO:假装我这个nameList是异步获取的,嘿嘿
-                const nameList = ['system', 'system-role', 'system-resource']
+                const nameList = ['system', 'system-role', 'system-resource', 'test', 'test-count', 'test-debounce', 'test-fn']
                 const filterRouter = routes => {
                     return routes.filter(route => {
                         if (route.children && route.children.length) {
@@ -120,7 +118,7 @@ export default new Vuex.Store({
                         return (route.meta && route.meta.always) || nameList.indexOf(route.name) !== -1
                     })
                 }
-                const accessRoutes = filterRouter(deepClone(asyncRouter))
+                const accessRoutes = filterRouter(asyncRouter)
                 commit('SET_ACCSESS_ROUTES', accessRoutes)
                 resolve(accessRoutes)
             })
