@@ -6,7 +6,7 @@
                 default-active="$route.path" 路径等于当前路由，可以让路由在跳转的时候对应高亮 
                 unique-opened 是否只保持一个菜单展开
              -->
-            <el-menu :collapse="collapse" background-color="#363C42" text-color="#fff" active-text-color="#ffd04b" router unique-opened :default-active="activePath">
+            <el-menu :collapse="collapse" background-color="#162338" text-color="#fff" active-text-color="#01C0C8" router unique-opened :default-active="activePath">
                 <sidebar-item v-for="item in menuList" :key="item.name" :data="item"></sidebar-item>
             </el-menu>
         </el-scrollbar>

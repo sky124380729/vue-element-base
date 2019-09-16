@@ -10,6 +10,8 @@
                     <el-breadcrumb-item v-for="item in breadList" :key="item.path">{{ item.meta && item.meta.title }}</el-breadcrumb-item>
                 </transition-group>
             </el-breadcrumb>
+
+            <!-- 菜单导航 -->
         </div>
         <!-- 右侧按钮组 -->
         <div class="layout__nav-right">

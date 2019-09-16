@@ -10,7 +10,8 @@
         </el-submenu>
         <!-- 没有子菜单 -->
         <el-menu-item :index="resolvePath(data.path)" v-else>
-            <i :class="(data.meta && data.meta.icon) || 'el-icon-success'" class="icon"></i>
+            <i v-if="data.meta && data.meta.icon" :class="data.meta.icon" class="icon"></i>
+            <span v-else class="subIcon">○</span>
             <span slot="title">{{ data.meta && data.meta.title }}</span>
         </el-menu-item>
     </div>
@@ -35,11 +36,17 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .icon {
     width: 16px;
     margin-right: 5px;
     text-align: center;
     font-size: 16px;
+}
+.subIcon {
+    position: relative;
+    top: -2px;
+    font-size: 20px;
+    margin-right: 6px;
 }
 </style>

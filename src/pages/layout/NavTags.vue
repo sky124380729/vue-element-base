@@ -10,6 +10,7 @@
                     @click="$router.push({ name: item.name })"
                     :class="{ isActive: $route.path === item.path }"
                     closable
+                    @close="closeTag(item)"
                     size="medium"
                     v-for="item in navTags"
                     :key="item.name"
@@ -69,7 +70,12 @@ export default {
     methods: {
         ...mapMutations(['ADD_NAVTAGS', 'DEL_NAVTAGS', 'DEL_OTHER_NAVTAGS', 'DEL_ALL_NAVTAGS']),
         handleTag(command) {
-            console.log(command)
+            if (command === 'closeOthers') {
+                this.selectedTag = this.navTags.find(v => v.path === this.$route.path)
+                this.closeOthersTags()
+            } else {
+                this.closeAllTags()
+            }
         },
         // 添加标签
         addTag(route) {
@@ -150,36 +156,39 @@ export default {
     height: $height-tag;
     align-items: center;
     background-color: #fff;
+    box-shadow: 0px 1px 10px 0px rgba(100, 100, 100, 0.2);
     flex-direction: start;
     font-size: 12px;
     &__btn {
         @include flex;
+        box-sizing: border-box;
         width: 28px;
         height: 28px;
+        margin: 0 3px;
         text-align: center;
         cursor: pointer;
         font-size: 16px;
-        background-color: #363c42;
-        border: 1px solid #fff;
-        color: #fff;
+        border: 1px solid $-color--link;
+        color: $-color--link;
         transition: color 0.3s;
+        border-radius: 2px;
         &:hover {
-            color: #2d8cf0;
+            background-color: $-color--link;
+            color: #fff;
         }
     }
     &__box {
         flex: 1;
         padding: 0 5px;
+        white-space: nowrap;
     }
     .el-tag {
         cursor: pointer;
         border-radius: 0;
         margin-right: 5px;
-        &.isActive {
-            .dotted {
-                background-color: #2d8cf0;
-            }
-        }
+        background-color: #fff;
+        color: #919499;
+        border-radius: 2px;
         .dotted {
             position: relative;
             display: inline-block;
@@ -187,8 +196,15 @@ export default {
             margin-right: 6px;
             width: 10px;
             height: 10px;
-            background-color: #e6e6e6;
+            background-color: #919499;
             border-radius: 50%;
+        }
+        &.isActive {
+            color: $-color--link;
+            border-color: $-color--link;
+            .dotted {
+                background-color: $-color--link;
+            }
         }
     }
     .el-icon-circle-close {
