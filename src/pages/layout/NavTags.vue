@@ -197,7 +197,7 @@ export default {
         font-size: 16px;
         border: 1px solid $-color--link;
         color: $-color--link;
-        transition: color 0.3s;
+        transition: color 0.3s, border-radius 0.2s;
         border-radius: 2px;
         &:not(.navTags__btn--disabled):hover {
             background-color: $-color--link;

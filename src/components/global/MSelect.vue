@@ -10,7 +10,12 @@ export default {
     inheritAttrs: false,
     props: {
         mValue: [String, Number],
-        options: Array
+        options: {
+            type: Array,
+            default: () => []
+        },
+        lookup: String,
+        initData: Function
     },
     model: {
         prop: 'mValue',
@@ -31,6 +36,26 @@ export default {
     methods: {
         valChange(val) {
             this.$emit('mChange', val)
+        }
+    },
+    async created() {
+        // 对于数据字典的处理
+        if (this.lookup) {
+            const lookup = this.$store.getters.dict(this.lookup)
+            for (const [k, v] of Object.entries(lookup)) {
+                this.selectList.push({
+                    label: v,
+                    value: k
+                })
+            }
+            return
+        }
+        // 初始化执行函数
+        if (typeof this.initData === 'function') {
+            this.loading = true
+            this.selectList = await this.initData()
+            this.loading = false
+            return
         }
     }
 }

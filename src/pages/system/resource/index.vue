@@ -2,7 +2,7 @@
     <div>
         <p>资源管理</p>
         <el-row>
-            <el-button @click="get">试试</el-button>
+            <el-button @click="get" type="primary">试试</el-button>
         </el-row>
         <el-row>
             <el-button @click="go">去角色管理</el-button>

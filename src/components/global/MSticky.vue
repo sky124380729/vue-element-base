@@ -1,7 +1,7 @@
-// 目前只支持app-main区间的sticky
+// 目前只支持view-wrapper区间的sticky
 
 <template>
-    <div :style="{ height: height + 'px', zIndex: zIndex }">
+    <div :style="{ height: height + 'px', zIndex: zIndex }" class="m-sticky">
         <div :class="className" :style="{ top: isSticky ? stickyTop + 'px' : '', zIndex: zIndex, position: position, width: width, height: height + 'px' }">
             <slot></slot>
         </div>
@@ -41,16 +41,16 @@ export default {
     },
     mounted() {
         this.height = this.$el.getBoundingClientRect().height
-        document.querySelector('.app-main').addEventListener('scroll', this.handleScroll)
-        document.querySelector('.app-main').addEventListener('resize', this.handleResize)
+        document.querySelector('.view-wrapper').addEventListener('scroll', this.handleScroll)
+        document.querySelector('.view-wrapper').addEventListener('resize', this.handleResize)
     },
     activated() {
         this.handleScroll()
     },
     destroyed() {
-        if (document.querySelector('.app-main')) {
-            document.querySelector('.app-main').removeEventListener('scroll', this.handleScroll)
-            document.querySelector('.app-main').removeEventListener('resize', this.handleResize)
+        if (document.querySelector('.view-wrapper')) {
+            document.querySelector('.view-wrapper').removeEventListener('scroll', this.handleScroll)
+            document.querySelector('.view-wrapper').removeEventListener('resize', this.handleResize)
         }
     },
     methods: {

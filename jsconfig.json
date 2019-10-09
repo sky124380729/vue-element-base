@@ -17,5 +17,9 @@
         },
         "moduleResolution": "node",
         "target": "esnext"
-    }
+    },
+    "exclude": [
+        "node_modules",
+        "dist"
+    ]
 }
