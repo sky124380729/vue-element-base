@@ -43,9 +43,11 @@ export const compIndex = {
 
 // bus操作页混入
 export const compOpt = {
-    props: {
-        id: String,
-        view: Boolean
+    data() {
+        return {
+            id: this.page.id,
+            view: this.page.view
+        }
     },
     ...compCommon
 }
