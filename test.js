@@ -1,21 +1,24 @@
 const fs = require('fs')
-
+// let temp = ''
 const x = `
     {
         path: 'fn',
         component: () => import('pages/test/fn'),
         name: 'test-fn',
         meta: { title: 'fn组件', menu: true }
-    } /* SLOT */`
-
+    } 
+    /* SLOT */
+`
+const path = `${__dirname}/src/router/modules/test2.js`
 let temp = ''
-try {
-    temp = fs.readFileSync(`${__dirname}/src/router/modules/test.js`, 'utf8')
-    fs.writeFileSync(`${__dirname}/src/router/modules/test2.js`, temp.replace(/\n {4}\/\* SLOT \*\//g, `${x}`), 'utf8')
-} catch (e) {
-    temp = `export default [
+fs.readFile(path, 'utf8', (err, data) => {
+    if (err) {
+        temp = `export default [
     /* SLOT */
 ]
 `
-    fs.writeFileSync(`${__dirname}/src/router/modules/test2.js`, temp.replace(/\n {4}\/\* SLOT \*\//g, `${x}`), 'utf8')
-}
+    } else {
+        temp = data
+    }
+    fs.writeFileSync(path, temp.replace(/\n {4}\/\* SLOT \*\//g, `${err ? '' : ','}${x}`), 'utf8')
+})
