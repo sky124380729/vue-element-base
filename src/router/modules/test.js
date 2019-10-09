@@ -16,5 +16,12 @@ export default [
         component: () => import('pages/test/fn'),
         name: 'test-fn',
         meta: { title: 'fn组件', menu: true }
+    },
+    {
+        path: 'fn',
+        component: () => import('pages/test/fn'),
+        name: 'test-fn',
+        meta: { title: 'fn组件', menu: true }
     }
+    /* SLOT */
 ]
