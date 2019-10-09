@@ -15,6 +15,10 @@
         </div>
         <!-- 右侧按钮组 -->
         <div class="layout__nav-right">
+            <!-- <m-select class="search" size="mini" remote filterable :remote-method="querySearch" :options="options" placeholder="请输入菜单名"></m-select> -->
+            <el-autocomplete class="search" size="mini" v-model="routeSearch" :fetch-suggestions="querySearch" placeholder="请输入内容">
+                <i class="el-icon-search el-input__icon" slot="suffix"></i>
+            </el-autocomplete>
             <img class="avatar" src="~imgs/vue.png" alt="" />
             <el-dropdown trigger="click" @command="navCommand">
                 <span class="el-dropdown-link">Pink丶缤<i class="el-icon-arrow-down el-icon--right"></i> </span>
@@ -30,6 +34,13 @@
 <script>
 export default {
     name: 'navbar',
+    data() {
+        return {
+            options: [],
+            routeSearch: '',
+            routes: []
+        }
+    },
     computed: {
         collapse() {
             return this.$store.state.collapse
@@ -43,6 +54,20 @@ export default {
         }
     },
     methods: {
+        querySearch(queryString, cb) {
+            let routes = this.routes
+            let results = queryString ? routes.filter(this.createFilter(queryString)) : routes
+            // 调用 callback 返回建议列表的数据
+            cb(results)
+        },
+        createFilter(queryString) {
+            return routes => {
+                return routes.value.toLowerCase().indexOf(queryString.toLowerCase()) === 0
+            }
+        },
+        loadRoutes() {
+            return [{ value: '三全鲜食（北新泾店）', address: '长宁区新渔路144号' }, { value: 'Hot honey 首尔炸鸡（仙霞路）', address: '上海市长宁区淞虹路661号' }]
+        },
         async navCommand(command) {
             if (command === 'setting') {
                 this.$message.info('敬请期待~')
@@ -54,6 +79,9 @@ export default {
         setCollapse(flag) {
             this.$store.commit('SET_COLLAPSE', flag)
         }
+    },
+    mounted() {
+        this.routes = this.loadRoutes()
     }
 }
 </script>

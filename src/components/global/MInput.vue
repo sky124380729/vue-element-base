@@ -8,6 +8,7 @@
         ref="elInput"
         :maxlength="max_length"
         :placeholder="ph"
+        :show-word-limit="type === 'textarea'"
         :autosize="{ minRows: 3, maxRows: 6 }"
     >
         <template #append>

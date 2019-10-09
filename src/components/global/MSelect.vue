@@ -31,6 +31,9 @@ export default {
     watch: {
         mValue(val) {
             this.value = val
+        },
+        options(arr) {
+            this.selectList = arr
         }
     },
     methods: {
