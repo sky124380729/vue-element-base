@@ -28,3 +28,11 @@
     float: right;
     margin-top: 15px;
 }
+
+// 自定义树的样式
+.el-tree-node__content {
+    height: 34px;
+}
+.el-tree-node__content>label.el-checkbox {
+    margin-right: 8px !important;
+}

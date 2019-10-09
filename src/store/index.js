@@ -1,7 +1,8 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import Cookie from 'js-cookie'
-import { asyncRouter } from '../router'
+import { asyncRouter } from '@/router'
+import { deepClone } from '@/utils/tools'
 
 Vue.use(Vuex)
 
@@ -118,7 +119,7 @@ export default new Vuex.Store({
                         return (route.meta && route.meta.always) || nameList.indexOf(route.name) !== -1
                     })
                 }
-                const accessRoutes = filterRouter(asyncRouter)
+                const accessRoutes = filterRouter(deepClone(asyncRouter))
                 commit('SET_ACCSESS_ROUTES', accessRoutes)
                 resolve(accessRoutes)
             })

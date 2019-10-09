@@ -6,6 +6,7 @@
 .wrapper-y {
     overflow-x: hidden;
 }
+
 .layout {
     width: 100vw;
     height: 100vh;
@@ -50,7 +51,7 @@
         justify-content: space-between;
         align-items: center;
         padding: 0 20px;
-        background-color: $-color--nav;
+        background-color: $-color--theme;
         color: #fff;
         &-left {
             display: flex;
@@ -63,9 +64,13 @@
                 margin-left: 20px;
                 .el-breadcrumb__inner {
                     font-weight: normal;
-                    &:not(:hover) {
-                        color:#fff;
-                    }
+                    color: #fff;
+                }
+                .el-breadcrumb__inner.is-link:hover, .el-breadcrumb__inner a:hover {
+                    color: #116effd9;
+                }
+                .el-breadcrumb__item:last-child .el-breadcrumb__inner:hover {
+                    color: inherit;
                 }
             }
         }
