@@ -119,7 +119,7 @@ export default new Vuex.Store({
                         return (route.meta && route.meta.always) || nameList.indexOf(route.name) !== -1
                     })
                 }
-                const accessRoutes = filterRouter(deepClone(asyncRouter))
+                const accessRoutes = filterRouter(asyncRouter)
                 commit('SET_ACCSESS_ROUTES', accessRoutes)
                 resolve(accessRoutes)
             })
