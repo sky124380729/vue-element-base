@@ -1,6 +1,6 @@
 <template>
     <div class="layout__side">
-        <img class="logo" src="~imgs/logo.png" alt="" />
+        <img class="logo" src="~imgs/logox.png" alt="" />
         <el-scrollbar wrapClass="wrapper-y">
             <!-- 
                 default-active="$route.path" 路径等于当前路由，可以让路由在跳转的时候对应高亮 
