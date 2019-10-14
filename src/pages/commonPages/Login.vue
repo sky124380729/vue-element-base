@@ -70,7 +70,6 @@ export default {
     display: flex;
     width: 100vw;
     height: 100vh;
-    background-color: #fff;
     flex-direction: column;
     &__header {
         @include flex(flex-start);
@@ -104,10 +103,10 @@ export default {
         width: 360px;
         margin-right: 160px;
         border-radius: 6px;
-        background-color: #fff;
         .body {
             flex: 1;
             color: $-color--theme;
+            background-color: #fff;
             padding: 0 30px;
             h1 {
                 height: 40px;

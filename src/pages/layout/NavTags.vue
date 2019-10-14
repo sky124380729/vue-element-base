@@ -173,7 +173,6 @@ export default {
     display: flex;
     height: $height-tag;
     align-items: center;
-    background-color: #fff;
     box-shadow: 0px 1px 10px 0px rgba(100, 100, 100, 0.2);
     flex-direction: start;
     font-size: 12px;
