@@ -16,14 +16,14 @@ export default new Vuex.Store({
     getters: {
         cachedViews: state => state.cachedViews,
         accsessRoutes: state => state.accsessRoutes,
+        // 左侧菜单
         menuList: state => {
-            // 过滤出menu为true的路由
             const filterMenus = menus => {
                 return menus.filter(item => {
                     if (item.children && item.children.length) {
                         item.children = filterMenus(item.children)
                     }
-                    return item.meta.menu
+                    return item.meta && item.meta.menu
                 })
             }
             return filterMenus(state.accsessRoutes)
