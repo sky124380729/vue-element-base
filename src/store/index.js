@@ -2,7 +2,6 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import Cookie from 'js-cookie'
 import { asyncRouter } from '@/router'
-import { deepClone } from '@/utils/tools'
 
 Vue.use(Vuex)
 
