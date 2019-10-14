@@ -1,5 +1,5 @@
 <template>
-    <el-tree show-checkbox :data="resourceTree" :props="defaultProps" :render-content="renderContent">
+    <el-tree show-checkbox :data="menuList" :props="defaultProps" :render-content="renderContent">
         <p class="custom-tree-node" slot-scope="{ node, data }">
             <span>{{ node.label }}</span>
             <span class="name" :class="{ isRoot: data.name.includes('-') }">{{ data.name }}</span>
@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import { asyncRouter } from '@/router'
+import { mapGetters } from 'vuex'
 export default {
     name: 'system-resource',
     data() {
@@ -22,17 +22,7 @@ export default {
         }
     },
     computed: {
-        resourceTree() {
-            const filterRouter = routes => {
-                return routes.filter(route => {
-                    if (route.children && route.children.length) {
-                        route.children = filterRouter(route.children)
-                    }
-                    return route.meta && route.meta.menu
-                })
-            }
-            return filterRouter(this.$deepClone(asyncRouter))
-        }
+        ...mapGetters(['menuList'])
     },
     methods: {
         renderContent(h, { node, data }) {
