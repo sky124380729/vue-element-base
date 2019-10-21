@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import Cookie from 'js-cookie'
 import { asyncRouter } from '@/router'
+import { deepClone } from '@/utils/tools'
 
 Vue.use(Vuex)
 
@@ -26,7 +27,7 @@ export default new Vuex.Store({
                     return item.meta && item.meta.menu
                 })
             }
-            return filterMenus(state.accsessRoutes)
+            return filterMenus(deepClone(state.accsessRoutes))
         },
         navTags: state => state.navTags
     },
