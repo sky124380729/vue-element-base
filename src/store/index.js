@@ -101,6 +101,7 @@ export default new Vuex.Store({
         },
         // 退出登录
         LOGOUT: state => {
+            /* TODO: 调用后台退出登录接口 */
             state.navTags = []
             state.cachedViews = []
             Cookie.remove('token')

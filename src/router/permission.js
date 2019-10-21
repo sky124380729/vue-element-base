@@ -8,6 +8,9 @@ import Cookies from 'js-cookie'
 router.beforeEach(async (to, from, next) => {
     const token = Cookies.get('token')
     NProgress.start()
+    if (to.path === '/login') {
+        store.dispatch('logout')
+    }
     if (token) {
         //没有菜单则拉取菜单
         if (!store.state.authorized) {
@@ -22,26 +25,8 @@ router.beforeEach(async (to, from, next) => {
             next()
         }
     } else {
-        if (to.path !== '/login') {
-            next({
-                path: '/login'
-            })
-        } else {
-            next()
-        }
+        next(to.path !== '/login' ? { path: '/login' } : true)
     }
-    // // 如果跳转到登录页，清除token
-    // if (to.path === '/login') {
-    //     store.dispatch('logout')
-    // }
-    // // 没有token就跳转到登录
-    // if (!token && to.path !== '/login') {
-    //     next({ path: '/login' })
-    //     NProgress.done()
-    //     return
-    // } else {
-    //     next()
-    // }
 })
 
 router.afterEach(() => {
