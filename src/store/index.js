@@ -111,7 +111,7 @@ export default new Vuex.Store({
         setAccessRoutes: ({ commit }) => {
             return new Promise(resolve => {
                 // TODO:假装我这个nameList是异步获取的,嘿嘿
-                const nameList = ['system', 'system-role', 'system-resource', 'test', 'test-count', 'test-debounce', 'test-fn']
+                const nameList = ['system', 'system-role', 'system-resource', 'test', 'test-count', 'test-debounce', 'test-fn', 'test-hoc']
                 const filterRouter = routes => {
                     return routes.filter(route => {
                         if (route.children && route.children.length) {

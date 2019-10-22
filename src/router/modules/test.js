@@ -16,6 +16,12 @@ export default [
         component: () => import('pages/test/fn'),
         name: 'test-fn',
         meta: { title: 'fn组件', menu: true }
+    },
+    {
+        path: 'hoc',
+        component: () => import('pages/test/highOrderComp'),
+        name: 'test-hoc',
+        meta: { title: 'hoc', menu: true }
     }
     /* SLOT */
 ]
