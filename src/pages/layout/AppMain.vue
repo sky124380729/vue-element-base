@@ -2,7 +2,7 @@
     <el-scrollbar wrapClass="wrapper-y app-main">
         <section class="layout__content">
             <transition name="el-fade-in-linear" mode="out-in">
-                <keep-alive :include="$store.state.cachedViews">
+                <keep-alive :include="cachedViews">
                     <router-view :key="$route.path"></router-view>
                 </keep-alive>
             </transition>
@@ -11,11 +11,12 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
 export default {
     name: 'app-main',
     computed: {
-        ...mapGetters(['cachedViews'])
+        cachedViews() {
+            return process.env.NODE_ENV !== 'production' ? [] : this.$store.getters.cachedViews
+        }
     }
 }
 </script>
