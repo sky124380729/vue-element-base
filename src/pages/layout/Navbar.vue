@@ -45,10 +45,12 @@ export default {
             let arr = []
             const getRoute = (routes, basePath = '', isRoot = true) => {
                 routes.forEach(route => {
-                    arr.push({
-                        value: route.meta && route.meta.title,
-                        path: isRoot ? route.path : basePath + '/' + route.path
-                    })
+                    if (!isRoot || route.name === 'platform') {
+                        arr.push({
+                            value: route.meta && route.meta.title,
+                            path: isRoot ? route.path : basePath + '/' + route.path
+                        })
+                    }
                     if (route.children && route.children.length) {
                         getRoute(route.children, route.path, false)
                     }
