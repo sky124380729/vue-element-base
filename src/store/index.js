@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import Cookie from 'js-cookie'
 import { asyncRouter } from '@/router'
+// import { Decrypt } from '@/utils/secret'
 import { deepClone } from '@/utils/tools'
 
 Vue.use(Vuex)
@@ -109,9 +110,23 @@ export default new Vuex.Store({
     },
     actions: {
         setAccessRoutes: ({ commit }) => {
+            // 设置全部路由的方法
+            const hack = (menuList, arr = []) => {
+                menuList.forEach(menu => {
+                    if (menu.children && menu.children.length) {
+                        hack(menu.children, arr)
+                    }
+                    menu.name && arr.push(menu.name)
+                })
+                return arr
+            }
+
             return new Promise(resolve => {
                 // TODO:假装我这个nameList是异步获取的,嘿嘿
-                const nameList = ['system', 'system-role', 'system-resource', 'system-permission', 'test', 'test-count', 'test-debounce', 'test-fn', 'test-hoc']
+                const nameList = hack(deepClone(asyncRouter))
+
+                // 要对后台拉取的数据进行解密Decrypt
+
                 const filterRouter = routes => {
                     return routes.filter(route => {
                         if (route.children && route.children.length) {

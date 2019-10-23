@@ -19,6 +19,7 @@
 </template>
 
 <script>
+import { Encrypt, Decrypt } from '@/utils/secret'
 export default {
     name: 'system-permission',
     data() {
@@ -68,7 +69,12 @@ export default {
             return list
         },
         submit() {
-            console.log(this.$refs.tree.getCheckedKeys().concat(this.$refs.tree.getHalfCheckedKeys()))
+            const arr = this.$refs.tree.getCheckedKeys().concat(this.$refs.tree.getHalfCheckedKeys())
+            // 提交前记得加密
+            const newArr = arr.map(name => Encrypt(name))
+            console.log(newArr)
+            const newArr2 = newArr.map(name => Decrypt(name))
+            console.log(newArr2)
         }
     }
 }

@@ -7,12 +7,13 @@
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
     "create": "node create create",
-    "new":"plop"
+    "new": "plop"
   },
   "dependencies": {
     "axios": "^0.19.0",
     "commander": "^3.0.2",
     "core-js": "^2.6.5",
+    "crypto-js": "^3.1.9-1",
     "element-ui": "^2.11.1",
     "inquirer": "^7.0.0",
     "js-cookie": "^2.2.1",
