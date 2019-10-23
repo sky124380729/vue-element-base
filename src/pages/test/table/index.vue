@@ -7,6 +7,7 @@
             <el-table-column label="xxx" prop="xxx"></el-table-column>
             <el-table-column label="yyy" prop="yyy"></el-table-column>
             <el-table-column label="zzz" prop="zzz"></el-table-column>
+            <el-table-column label="aaa" prop="aaa"></el-table-column>
             <el-table-column label="操作" class-name="operate" width="140px">
                 <template v-slot="{ row }">
                     <el-button type="text" @click="handle(row)">编辑</el-button>
