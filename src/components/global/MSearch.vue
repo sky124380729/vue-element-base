@@ -62,11 +62,11 @@ export default {
                         this.setChildren(v, createElement)
                     )
                 })}
-                <el-button class='m-search__btn' type='primary' on-click={this.sendQuery}>
+                <el-button class='m-search__btn' size='mini' type='primary' on-click={this.sendQuery}>
                     查询
                 </el-button>
                 {this.showClearBtn && (
-                    <el-button class='m-search__btn' type='danger' on-click={this.sendClear}>
+                    <el-button class='m-search__btn' size='mini' type='danger' on-click={this.sendClear}>
                         清空
                     </el-button>
                 )}

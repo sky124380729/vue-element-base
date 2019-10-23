@@ -1,4 +1,4 @@
-// 目前只支持view-wrapper区间的sticky
+// 目前只支持app-main区间的sticky
 
 <template>
     <div :style="{ height: height + 'px', zIndex: zIndex }" class="m-sticky">
@@ -34,24 +34,19 @@ export default {
             isSticky: false
         }
     },
-    watch: {
-        '$store.state.collapse'() {
-            // this.handleScroll()
-        }
+    activated() {
+        this.handleResize()
     },
     mounted() {
         this.height = this.$el.getBoundingClientRect().height
-        document.querySelector('.view-wrapper').addEventListener('scroll', this.handleScroll)
-        document.querySelector('.view-wrapper').addEventListener('resize', this.handleResize)
-    },
-    activated() {
-        this.handleScroll()
+        const wrapper = document.querySelector('.app-main')
+        wrapper && wrapper.addEventListener('scroll', this.handleScroll)
+        window.addEventListener('resize', this.handleResize)
     },
     destroyed() {
-        if (document.querySelector('.view-wrapper')) {
-            document.querySelector('.view-wrapper').removeEventListener('scroll', this.handleScroll)
-            document.querySelector('.view-wrapper').removeEventListener('resize', this.handleResize)
-        }
+        const wrapper = document.querySelector('.app-main')
+        wrapper && wrapper.removeEventListener('scroll', this.handleScroll)
+        window.removeEventListener('resize', this.handleResize)
     },
     methods: {
         sticky() {

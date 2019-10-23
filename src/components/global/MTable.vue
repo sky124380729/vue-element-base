@@ -1,6 +1,6 @@
 <template>
     <div class="m-table" :class="{ hasSearch: queryArr.length }">
-        <m-sticky :sticky-top="108" :z-index="2">
+        <m-sticky :sticky-top="96" :z-index="2">
             <m-search :queryArr="queryArr" :title="title" @getConditions="getConditions">
                 <slot name="buttons"></slot>
             </m-search>
@@ -25,7 +25,6 @@
                 </el-pagination>
             </div>
         </div>
-        <!-- <i v-if="renovate" class="renovate el-icon-refresh-right" @click="getList('renovate')"></i> -->
     </div>
 </template>
 

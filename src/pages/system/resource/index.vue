@@ -1,10 +1,5 @@
 <template>
-    <el-tree show-checkbox :data="menuList" :props="defaultProps" :render-content="renderContent">
-        <p class="custom-tree-node" slot-scope="{ node, data }">
-            <span>{{ node.label }}</span>
-            <span class="name" :class="{ isRoot: data.name.includes('-') }">{{ data.name }}</span>
-        </p>
-    </el-tree>
+    <el-tree :data="menuList" :props="defaultProps" :render-content="renderContent"></el-tree>
 </template>
 
 <script>
