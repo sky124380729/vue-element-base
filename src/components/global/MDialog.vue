@@ -6,8 +6,8 @@
             </m-row>
         </el-form>
         <template #footer>
-            <el-button @click="$emit('update:visible', false)">返回</el-button>
-            <el-button v-if="$listeners.submit" type="primary" :loading="submitLoading" @click="submitForm">提交</el-button>
+            <el-button size="mini" @click="$emit('update:visible', false)">返回</el-button>
+            <el-button size="mini" v-if="$listeners.submit" type="primary" :loading="submitLoading" @click="submitForm">提交</el-button>
         </template>
     </el-dialog>
 </template>
@@ -40,11 +40,11 @@ export default {
     },
     computed: {
         realLabelWidth() {
-            const map = new Map([[1, '100px'], [2, '100px'], [3, '100px']])
+            const map = new Map([[1, '100px'], [2, '110px'], [3, '100px']])
             return this.labelWidth || map.get(this.number)
         },
         realWidth() {
-            const map = new Map([[1, '480px'], [2, '740px'], [3, '980px']])
+            const map = new Map([[1, '480px'], [2, '750px'], [3, '980px']])
             return this.width || map.get(this.number)
         }
     },

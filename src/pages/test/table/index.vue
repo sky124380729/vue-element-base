@@ -25,6 +25,9 @@
             <el-form-item label="测试项目3：" prop="zzz">
                 <m-select v-model="model.zzz" :init-data="() => [{ label: 1, value: 1 }]"></m-select>
             </el-form-item>
+            <el-form-item label="测试项目4：" prop="aaa">
+                <m-input type="textarea" v-model="model.aaa"></m-input>
+            </el-form-item>
             <template #buttons>
                 <el-button type="primary" @click="submit" :loading="submitLoading">提交</el-button>
             </template>
