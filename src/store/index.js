@@ -12,6 +12,7 @@ export default new Vuex.Store({
         collapse: false, // 菜单栏是否收缩
         authorized: false, // 是否拉取了授权菜单
         accsessRoutes: [], // 已注册的路由
+        permissionBtns: [], // 有权限的按钮
         navTags: [], // 标签导航列表
         cachedViews: [] // 缓存的页面
     },
@@ -36,6 +37,9 @@ export default new Vuex.Store({
         SET_ACCSESS_ROUTES(state, accsessRoutes) {
             state.authorized = true
             state.accsessRoutes = accsessRoutes
+        },
+        SET_PERMISSION_BTNS(state, btns) {
+            state.permissionBtns = btns
         },
         SET_COLLAPSE(state, flag) {
             state.collapse = flag
@@ -137,6 +141,7 @@ export default new Vuex.Store({
                 }
                 const accessRoutes = filterRouter(asyncRouter)
                 commit('SET_ACCSESS_ROUTES', accessRoutes)
+                commit('SET_PERMISSION_BTNS', ['test-table-append'])
                 resolve(accessRoutes)
             })
         },

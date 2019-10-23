@@ -1,23 +1,18 @@
 import store from '@/store'
 
 export default {
-    inserted(el, binding) {
-        console.log(el, binding)
-        const { value } = binding
-        const roles = store.getters && store.getters.roles
-
-        if (value && value instanceof Array && value.length > 0) {
-            const permissionRoles = value
-
-            const hasPermission = roles.some(role => {
-                return permissionRoles.includes(role)
-            })
-
-            if (!hasPermission) {
-                el.parentNode && el.parentNode.removeChild(el)
-            }
-        } else {
-            throw new Error(`need roles! Like v-permission="['admin','editor']"`)
+    inserted(el, binding, vnode) {
+        // 获取this
+        const { context: vm } = vnode
+        // 获取绑定的值
+        const name = vm.$options.name + '-' + binding.value
+        // 获取权限表
+        const {
+            state: { permissionBtns }
+        } = store
+        // 如果没有权限那就移除
+        if (permissionBtns.indexOf(name) === -1) {
+            el.parentNode.removeChild(el)
         }
     }
 }

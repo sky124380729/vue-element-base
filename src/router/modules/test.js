@@ -1,5 +1,11 @@
 export default [
     {
+        path: 'table',
+        component: () => import('pages/test/table'),
+        name: 'test-table',
+        meta: { title: '基础列表', menu: true }
+    },
+    {
         path: 'count',
         component: () => import('pages/test/count'),
         name: 'test-count',
@@ -21,7 +27,14 @@ export default [
         path: 'hoc',
         component: () => import('pages/test/highOrderComp'),
         name: 'test-hoc',
-        meta: { title: 'hoc', menu: true }
+        meta: {
+            title: 'hoc',
+            menu: true,
+            btnList: {
+                append: '新增',
+                edit: '编辑'
+            }
+        }
     }
     /* SLOT */
 ]
