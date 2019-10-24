@@ -84,12 +84,13 @@ export default {
                 return routes.value.toLowerCase().indexOf(queryString.toLowerCase()) === 0
             }
         },
-        async navCommand(command) {
+        navCommand(command) {
             if (command === 'setting') {
                 this.$message.info('敬请期待~')
             } else if (command === 'logout') {
-                await this.$store.dispatch('logout')
-                this.$router.push('/login')
+                this.$store.dispatch('logout').then(() => {
+                    this.$router.push('/login')
+                })
             }
         },
         setCollapse(flag) {

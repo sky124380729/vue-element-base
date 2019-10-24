@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import Cookie from 'js-cookie'
 import { asyncRouter } from '@/router'
+import { request } from '@/api/request'
 // import { Decrypt } from '@/utils/secret'
 import { deepClone } from '@/utils/tools'
 
@@ -146,7 +147,11 @@ export default new Vuex.Store({
             })
         },
         logout: ({ commit }) => {
-            commit('LOGOUT')
+            return new Promise(async resolve => {
+                await request.get('/principal/logout')
+                commit('LOGOUT')
+                resolve()
+            })
         }
     }
 })
