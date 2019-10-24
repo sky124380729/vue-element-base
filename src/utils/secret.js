@@ -1,6 +1,10 @@
+// enc加密解密
+
 import CryptoJS from 'crypto-js'
 
+// 秘钥
 const key = CryptoJS.enc.Utf8.parse('4FS1F3DA')
+// 偏移量
 const iv = CryptoJS.enc.Utf8.parse('5A6D3EEB')
 
 //解密方法

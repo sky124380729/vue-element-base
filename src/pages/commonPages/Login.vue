@@ -18,7 +18,7 @@
                         <p class="clearfix">
                             <el-button class="fr" type="text" @click="forgetPwd">忘记密码？</el-button>
                         </p>
-                        <el-button class="login-btn" type="primary" @click="login" :loading="loading">登 录</el-button>
+                        <m-button class="login-btn" type="primary" @click="login" :loading="loading">登 录</m-button>
                     </el-form>
                 </div>
                 <div class="footer">
@@ -40,7 +40,10 @@ export default {
     data() {
         return {
             loading: false,
-            form: {},
+            form: {
+                code: 'admin',
+                password: '123'
+            },
             rules: {
                 code: [{ required: true, message: '请输入用户名', trigger: 'blur' }],
                 password: [{ required: true, message: '请输入密码', trigger: 'blur' }]
@@ -49,11 +52,16 @@ export default {
     },
     methods: {
         async login() {
-            Cookies.set('token', 'whosyourdaddy', { expires: 7 })
-            this.$message({
-                message: '登录成功',
-                type: 'success'
+            const res = await this.$http.post('/principal/login', {
+                data: this.form,
+                vm: this,
+                loading: 'loading'
             })
+            if (!res) return
+            const {
+                content: { token }
+            } = res
+            Cookies.set('token', token, { expires: 7 })
             this.$router.push('/')
         },
         forgetPwd() {

@@ -30,10 +30,12 @@ module.exports = {
             colors: true
         },
         proxy: {
-            '/api': {
+            '/qi': {
                 changeOrigin: true,
-                // 目标服务器地址
-                target: 'http://xxx.cloudkeeper.cn'
+                target: 'http://172.16.10.170:18093',
+                pathRewrite: {
+                    '^/qi': '/pf-mes-api'
+                }
             }
         }
     },

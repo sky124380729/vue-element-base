@@ -1,7 +1,8 @@
 <template>
-    <Hocx>
-        呵呵
-    </Hocx>
+    <section>
+        <Hocx>呵呵</Hocx>
+        <el-button @click="test" :loading="loading">试试</el-button>
+    </section>
 </template>
 
 <script>
@@ -14,6 +15,16 @@ export default {
                 console.log('我是高阶组件混入的方法')
             }
         })
+    },
+    data() {
+        return {
+            loading: false
+        }
+    },
+    methods: {
+        test() {
+            this.$http.post('/test/101')
+        }
     }
 }
 </script>
