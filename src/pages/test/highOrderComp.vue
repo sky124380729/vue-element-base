@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import Hoc from '@/components/Hoc'
+import Hoc from '@/components/local/Hoc'
 import { Button } from 'element-ui'
 export default {
     components: {

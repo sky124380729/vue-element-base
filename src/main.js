@@ -10,7 +10,6 @@ import 'element-ui/lib/theme-chalk/index.css' // element css
 import '@/components/global'
 import './styles/_element-variables.scss'
 import './styles/index.scss' // 全局 css
-import './components/global' // 全局 css
 import './router/permission' // 权限js
 
 Vue.config.productionTip = false
