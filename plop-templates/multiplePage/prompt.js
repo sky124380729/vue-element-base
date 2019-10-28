@@ -45,7 +45,8 @@ module.exports = {
                 path: `src/pages/${data.name.replace('-', '/')}/${vueName}-list.vue`,
                 templateFile: 'plop-templates/multiplePage/common-list.hbs',
                 data: {
-                    name: name
+                    name: name,
+                    route: data.name.replace('-', '/')
                 }
             },
             {
@@ -53,7 +54,8 @@ module.exports = {
                 path: `src/pages/${data.name.replace('-', '/')}/${vueName}-opt.vue`,
                 templateFile: 'plop-templates/multiplePage/common-opt.hbs',
                 data: {
-                    name: data.name
+                    name: data.name,
+                    route: data.name.replace('-', '/')
                 }
             }
         ]

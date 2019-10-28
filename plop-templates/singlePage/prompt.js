@@ -20,7 +20,8 @@ module.exports = {
                 path: `src/pages/${data.name.replace('-', '/')}/index.vue`,
                 templateFile: 'plop-templates/singlePage/index.hbs',
                 data: {
-                    name: data.name
+                    name: data.name,
+                    route: data.name.replace('-', '/')
                 }
             }
         ]
