@@ -4,8 +4,8 @@
             <div class="navTags__btn navTags__btn--left" :class="{ 'navTags__btn--disabled': !moveAble }" @click="move(-1)">
                 <i class="el-icon-caret-left"></i>
             </div>
-            <div class="navTags__box">
-                <div class="navTags__container" @mousewheel="mouseWheel" :style="{ transform: `translate(${this.posX}px, 0px)` }">
+            <div class="navTags__box swiper-container">
+                <div class="navTags__container swiper-wrapper">
                     <el-tag
                         @contextmenu.prevent.native="openMenu(item, $event)"
                         @click="$router.push({ name: item.name })"
@@ -13,6 +13,7 @@
                         closable
                         @close="closeTag(item)"
                         size="medium"
+                        class="swiper-slide"
                         v-for="item in navTags"
                         :key="item.name"
                     >
@@ -43,8 +44,8 @@
 </template>
 
 <script>
-import { Debounce } from '@/utils/tools'
 import { mapGetters, mapMutations } from 'vuex'
+import Swiper from 'swiper'
 export default {
     name: 'navTags',
     data() {
@@ -52,20 +53,15 @@ export default {
             visible: false,
             top: 0,
             left: 0,
-            index: 0,
-            tagWidth: [],
-            posX: 0,
-            selectedTag: {}
+            selectedTag: {},
+            swiper: null,
+            moveAble: true
         }
     },
     watch: {
         $route: {
             handler(route) {
                 this.addTag(route)
-                this.$nextTick(() => {
-                    const tags = document.querySelector('.navTags__container').childNodes
-                    this.tagWidth = [...tags].map(tag => Math.round(tag.getBoundingClientRect().width))
-                })
             },
             immediate: true
         },
@@ -78,23 +74,25 @@ export default {
         }
     },
     computed: {
-        ...mapGetters(['navTags']),
-        moveAble() {
-            return true
-        }
+        ...mapGetters(['navTags'])
     },
     methods: {
         ...mapMutations(['ADD_NAVTAGS', 'DEL_NAVTAGS', 'DEL_OTHER_NAVTAGS', 'DEL_ALL_NAVTAGS']),
-        mouseWheel(e) {
-            Debounce(this.move(e.wheelDelta > 0 ? 1 : -1))
+        initSwiper() {
+            this.swiper = new Swiper('.swiper-container', {
+                slidesPerView: 'auto',
+                loop: false,
+                mousewheel: true,
+                roundLengths: true,
+                observer: true
+            })
         },
         move(flag) {
-            if (!this.moveAble) return
-            if ((flag < 0 && this.index === this.tagWidth.length - 1) || (flag > 0 && this.index === 0)) return
-            const MARGIN_RIGHT = 5 // 右边距
-            const W = this.tagWidth[flag > 0 ? this.index - 1 : this.index]
-            this.posX += flag * (W + MARGIN_RIGHT)
-            this.index = this.index - flag
+            if (flag > 0) {
+                this.swiper.slideNext()
+            } else {
+                this.swiper.slidePrev()
+            }
         },
         handleTag(command) {
             if (command === 'closeOthers') {
@@ -112,16 +110,16 @@ export default {
                 title: route.meta.title,
                 name: route.name
             })
+            this.$nextTick(() => {
+                let index = [...document.querySelectorAll('.swiper-wrapper .el-tag')].findIndex(item => item.classList.contains('isActive'))
+                this.swiper.slideTo(index)
+            })
         },
         // 删除标签
         closeTag(tag) {
             // 控制路由重新跳转
             if (this.navTags.length === 1) {
-                this.$router.push({
-                    path: '/platform/index',
-                    title: '中央控制台',
-                    name: 'platform'
-                })
+                this.$router.push('/platform/index')
             } else if (this.$route.path === tag.path) {
                 for (const [k, v] of this.navTags.entries()) {
                     if (v.path === tag.path) {
@@ -148,11 +146,7 @@ export default {
         },
         closeAllTags() {
             this.DEL_ALL_NAVTAGS()
-            this.$router.push({
-                path: '/platform/index',
-                title: '中央控制台',
-                name: 'platform'
-            })
+            this.$router.push('/platform/index')
         },
         openMenu(tag, e) {
             this.visible = true
@@ -163,6 +157,9 @@ export default {
         closeMenu() {
             this.visible = false
         }
+    },
+    mounted() {
+        this.initSwiper()
     }
 }
 </script>
@@ -178,9 +175,6 @@ export default {
     font-size: 12px;
     &__box {
         overflow: hidden;
-    }
-    &__container {
-        transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1) 0s;
     }
     &__btn {
         @include flex;
