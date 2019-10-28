@@ -1,5 +1,8 @@
 <template>
-    <el-tree :data="menuList" :props="defaultProps" :render-content="renderContent"></el-tree>
+    <section>
+        <el-alert type="success" title="资源管理" description="取的是定义的路由元信息中menu为true的信息"></el-alert>
+        <el-tree :data="menuList" :props="defaultProps" :render-content="renderContent"></el-tree>
+    </section>
 </template>
 
 <script>

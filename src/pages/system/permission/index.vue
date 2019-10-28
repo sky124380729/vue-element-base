@@ -1,6 +1,7 @@
 <template>
     <section>
-        <m-button @click="visible = true">弹出1</m-button>
+        <el-alert type="success" title="权限配置" description="在路由的meta对象中配置btnList,使用时请使用v-permission"></el-alert>
+        <el-button type="primary" @click="visible = true" size="mini" class="mt20">点我</el-button>
         <el-dialog title="权限配置" :visible.sync="visible">
             <el-tree show-checkbox node-key="name" :data="permissionList" :props="defaultProps" ref="tree">
                 <div class="custom-tree-node" slot-scope="{ node, data }">
@@ -24,7 +25,7 @@ export default {
     name: 'system-permission',
     data() {
         return {
-            visible: true,
+            visible: false,
             permission: {},
             defaultProps: {
                 children: 'children',
