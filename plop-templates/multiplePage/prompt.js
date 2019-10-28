@@ -37,7 +37,8 @@ module.exports = {
                 path: `src/pages/${data.name.replace('-', '/')}/${vueName}-bus.vue`,
                 templateFile: 'plop-templates/multiplePage/common-bus.hbs',
                 data: {
-                    name: name
+                    name: name,
+                    route: vueName
                 }
             },
             {

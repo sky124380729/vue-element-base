@@ -25,7 +25,7 @@ export default {
     mixins: [compOpt],
     data() {
         const checkCode = async (rule, value, callback) => {
-            const res = await this.$http.post('/exists/{{ route }}', {
+            const res = await this.$http.post('/exists/test/multiple', {
                 data: {
                     id: this.model.id,
                     uniqueValue: value
@@ -49,7 +49,7 @@ export default {
     },
     methods: {
         async getData() {
-            const res = await this.$http.get('/{{ route }}/', {
+            const res = await this.$http.get('/test/multiple/', {
                 vm: this,
                 loading: 'loading'
             })
@@ -58,7 +58,7 @@ export default {
         },
         submit() {
             this.$refs.form.validate().then(async () => {
-                const res = await this.$http[this.model.id ? 'put' : 'post']('/{{ route }}', {
+                const res = await this.$http[this.model.id ? 'put' : 'post']('/test/multiple', {
                     data: this.model,
                     vm: this,
                     loading: 'submitLoading'

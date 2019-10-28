@@ -1,9 +1,15 @@
 export default [
     {
-        path: 'table',
-        component: () => import('pages/test/table'),
-        name: 'test-table',
-        meta: { title: '基础列表', menu: true }
+        path: 'single',
+        component: () => import('pages/test/single'),
+        name: 'test-single',
+        meta: { title: '单页测试', menu: true }
+    },
+    {
+        path: 'multiple',
+        component: () => import('pages/test/multiple/multiple-bus'),
+        name: 'test-multiple',
+        meta: { title: '多页测试', menu: true }
     },
     {
         path: 'count',

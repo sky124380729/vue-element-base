@@ -5,10 +5,10 @@
 </template>
 <script>
 import { compBus } from '@/mixins'
-import Index from './{{ route }}-list'
-import Opt from './{{ route }}-opt'
+import Index from './multiple-list'
+import Opt from './multiple-opt'
 export default {
-    name: '{{ name }}',
+    name: 'test-multiple',
     mixins: [compBus],
     components: {
         Index,

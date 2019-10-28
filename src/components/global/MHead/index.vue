@@ -38,6 +38,7 @@ export default {
                     {context.props.back ? (
                         <el-button
                             type='danger'
+                            size='mini'
                             on-click={() => {
                                 typeof context.props.back === 'boolean' ? context.parent.switchPage('Index') : context.props.back.call(context)
                             }}
