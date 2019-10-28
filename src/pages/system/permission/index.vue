@@ -72,10 +72,14 @@ export default {
         submit() {
             const arr = this.$refs.tree.getCheckedKeys().concat(this.$refs.tree.getHalfCheckedKeys())
             // 提交前记得加密
-            const newArr = arr.map(name => Encrypt(name))
-            console.log(newArr)
-            const newArr2 = newArr.map(name => Decrypt(name))
-            console.log(newArr2)
+            const encrypt = arr.map(name => Encrypt(name))
+
+            const decrypt = encrypt.map(name => Decrypt(name))
+
+            this.$message.warning(`加密后:${encrypt}`)
+            setTimeout(() => {
+                this.$message.success(`解密后:${decrypt}`)
+            }, 1000)
         }
     }
 }
