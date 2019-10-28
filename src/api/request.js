@@ -1,5 +1,6 @@
 import axios from 'axios'
 import router from '@/router'
+import store from '@/store'
 import { SUCCESS_OK, BASE_URL, TIME_OUT } from '@/constant'
 import Cookies from 'js-cookie'
 import { Message, MessageBox } from 'element-ui'
@@ -19,7 +20,8 @@ const codeCb = (code, error) => {
             Message.error(error)
             break
         case 401:
-            Message.error('页面超时，2s后跳转到登录页!')
+            Message.error('页面超时，请重新登录!')
+            store.commit('LOGOUT')
             setTimeout(() => {
                 router.push('/login')
             }, 2000)
