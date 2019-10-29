@@ -1,5 +1,5 @@
 <template>
-    <el-button v-on="$listeners" v-bind="$attrs" :loading="loading" @click="myClick">
+    <el-button v-on="$listeners" v-bind="$attrs" :loading="myLoading" @click="myClick">
         <slot></slot>
     </el-button>
 </template>
@@ -9,6 +9,7 @@ export default {
     name: 'mButton',
     inheritAttrs: false,
     props: {
+        loading: Boolean,
         debounce: {
             type: [Boolean, Number]
         }
@@ -16,17 +17,22 @@ export default {
     data() {
         return {
             timer: 0,
-            loading: false
+            myLoading: this.loading
+        }
+    },
+    watch: {
+        loading(flag) {
+            this.myLoading = flag
         }
     },
     methods: {
         myClick() {
             if (!this.debounce) return
-            this.loading = true
+            this.myLoading = true
             clearTimeout(this.timer)
             this.timer = setTimeout(
                 () => {
-                    this.loading = false
+                    this.myLoading = false
                 },
                 typeof this.debounce === 'boolean' ? 500 : this.debounce
             )
