@@ -40,6 +40,7 @@ export const Debounce = (fn, timeout = 300, ctx) => {
  * @constructor
  */
 export const deepClone = obj => {
+    if (!obj) return obj
     let result = Array.isArray(obj) ? [] : {}
     for (let key in obj) {
         if (obj.hasOwnProperty(key)) {
