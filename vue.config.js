@@ -15,7 +15,6 @@ module.exports = {
     chainWebpack: config => {
         config.resolve.alias
             .set('pages', resolve('src/pages'))
-            .set('static', resolve('src/static'))
             .set('imgs', resolve('src/assets/imgs'))
             .set('styles', resolve('src/styles'))
     },
