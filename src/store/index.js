@@ -147,8 +147,8 @@ export default new Vuex.Store({
             })
         },
         logout: ({ commit }) => {
-            return new Promise(async resolve => {
-                await request.get('/principal/logout')
+            return new Promise(resolve => {
+                request.get('/principal/logout')
                 commit('LOGOUT')
                 resolve()
             })

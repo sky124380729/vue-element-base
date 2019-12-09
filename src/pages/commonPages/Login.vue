@@ -52,7 +52,8 @@ export default {
     },
     methods: {
         async login() {
-            const res = await this.$http.post('/principal/login', {
+            // 真实接口
+            /* const res = await this.$http.post('/principal/login', {
                 data: this.form,
                 vm: this,
                 loading: 'loading'
@@ -60,7 +61,9 @@ export default {
             if (!res) return
             const {
                 content: { token }
-            } = res
+            } = res */
+            // 测试token
+            const token = 'whosyourdaddy'
             Cookies.set('token', token, { expires: 7 })
             this.$router.push('/')
         },
