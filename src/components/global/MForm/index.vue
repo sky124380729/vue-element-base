@@ -51,7 +51,7 @@ export default {
 </script>
 
 <style lang="scss">
-.m-form {
+/* .m-form {
     .el-input,
     .el-select,
     .el-date-editor,
@@ -85,5 +85,5 @@ export default {
             width: 130px;
         }
     }
-}
+} */
 </style>

@@ -144,7 +144,15 @@ export default {
                 if (!this.$slots.default) return
                 const data = this.$slots.default.filter(v => v.tag && v.tag.indexOf('ElTableColumn') !== -1).map(v => v.componentOptions.propsData)
                 data.forEach(v => {
-                    v.prop && (testForm[v.prop] = '测试数据测试数据')
+                    if (v.prop && v.label) {
+                        if (v.label.includes('时间')) {
+                            testForm[v.prop] = new Date().format('yyyy-MM-dd hh:mm:ss')
+                        } else if (v.label.includes('日期')) {
+                            testForm[v.prop] = new Date().format('yyyy-MM-dd')
+                        } else {
+                            testForm[v.prop] = '测试数据测试数据'
+                        }
+                    }
                 })
                 this.loading = true
                 this.tableList = []

@@ -5,6 +5,7 @@ import store from './store'
 import Element from 'element-ui'
 import directives from './directives' // 全局指令
 import plugins from './utils/plugins' // 全局指令
+import './utils/prototype' // 全局指令
 import 'element-ui/lib/theme-chalk/index.css' // element css
 // 全局组件注册
 import '@/components/global'
