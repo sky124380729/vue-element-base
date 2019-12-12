@@ -6,7 +6,6 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
 export default {
     name: 'system-resource',
     data() {
@@ -20,14 +19,31 @@ export default {
         }
     },
     computed: {
-        ...mapGetters(['menuList'])
+        menuList() {
+            function filterMenu(menu) {
+                return menu.filter(item => {
+                    if (item.children && item.children.length) {
+                        return filterMenu(item.children)
+                    }
+                    if (item.meta && item.meta.btnList) {
+                        let arr = []
+                        for (const [k, v] of Object.entries(item.meta.btnList)) {
+                            arr.push({ name: k, meta: { title: v }, isBtn: true })
+                        }
+                        item.children = arr
+                    }
+                    return item
+                })
+            }
+            return filterMenu(this.$deepClone(this.$store.getters.menuList))
+        }
     },
     methods: {
         renderContent(h, { node, data }) {
             return (
                 <p class='custom-tree-node'>
-                    <span>{node.label}</span>
-                    <span class={{ name: true, isRoot: data.name.includes('-') }}>{data.name}</span>
+                    <span class={{ isBtn: data.isBtn }}>{node.label}</span>
+                    <span class='name'>{data.name}</span>
                 </p>
             )
         }
@@ -50,9 +66,9 @@ export default {
             padding-right: 8px;
             .name {
                 color: $-color--theme;
-                &.isRoot {
-                    color: rgb(255, 208, 75);
-                }
+            }
+            .isBtn {
+                color: rgb(255, 208, 75);
             }
         }
     }
